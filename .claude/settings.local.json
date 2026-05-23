@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p /Users/davidmikaelyan/Desktop/domas/prisma /Users/davidmikaelyan/Desktop/domas/types /Users/davidmikaelyan/Desktop/domas/constants /Users/davidmikaelyan/Desktop/domas/lib /Users/davidmikaelyan/Desktop/domas/hooks /Users/davidmikaelyan/Desktop/domas/public/video /Users/davidmikaelyan/Desktop/domas/app/api/auth/register /Users/davidmikaelyan/Desktop/domas/app/api/auth/\"[...nextauth]\" /Users/davidmikaelyan/Desktop/domas/app/api/orders/\"[id]\" /Users/davidmikaelyan/Desktop/domas/app/api/subscriptions /Users/davidmikaelyan/Desktop/domas/app/api/payments/yukassa /Users/davidmikaelyan/Desktop/domas/app/api/reviews /Users/davidmikaelyan/Desktop/domas/app/api/admin/stats /Users/davidmikaelyan/Desktop/domas/app/api/admin/users /Users/davidmikaelyan/Desktop/domas/app/api/admin/send-email /Users/davidmikaelyan/Desktop/domas/app/\"\\(auth\\)\"/login /Users/davidmikaelyan/Desktop/domas/app/\"\\(auth\\)\"/register /Users/davidmikaelyan/Desktop/domas/app/dashboard /Users/davidmikaelyan/Desktop/domas/app/admin /Users/davidmikaelyan/Desktop/domas/components/ui /Users/davidmikaelyan/Desktop/domas/components/layout /Users/davidmikaelyan/Desktop/domas/components/sections && echo \"done\")",
+      "Bash(npm install *)",
+      "Bash(/usr/local/bin/node --version)",
+      "Bash(/opt/homebrew/bin/node --version)",
+      "Bash(find /usr /opt /Users/davidmikaelyan -maxdepth 6 -name \"npm\" -type f 2>/dev/null | head -5)",
+      "Read(//usr/**)",
+      "Read(//Users/davidmikaelyan/.nvm/versions/**)",
+      "Read(//Users/davidmikaelyan/.volta/**)",
+      "Bash(npx prisma *)",
+      "Bash(node_modules/.bin/prisma db *)",
+      "Bash(brew list *)",
+      "Read(//opt/homebrew/bin/**)",
+      "Bash(pg_isready)",
+      "Read(//Applications/**)",
+      "Bash(brew services *)",
+      "Bash(git init *)",
+      "Bash(git remote *)",
+      "Bash(git add *)"
+    ],
+    "additionalDirectories": [
+      "/Users/davidmikaelyan/Desktop/domas/app/api/auth"
+    ]
+  }
+}

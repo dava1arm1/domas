@@ -1,0 +1,167 @@
+// Prisma схема — Домас
+// Документация: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─── Роли пользователей ───────────────────────────────────────
+enum Role {
+  USER
+  ADMIN
+}
+
+// ─── Статусы подписки ─────────────────────────────────────────
+enum SubscriptionStatus {
+  ACTIVE
+  PAUSED
+  CANCELLED
+}
+
+// ─── Тарифные планы ───────────────────────────────────────────
+enum Plan {
+  BASIC    // Базовый — 1490₽/мес
+  COMFORT  // Комфорт — 3490₽/мес
+  MAX      // Максимум — 5990₽/мес
+}
+
+// ─── Статусы заказа ───────────────────────────────────────────
+enum OrderStatus {
+  NEW         // Новый, ожидает назначения
+  IN_PROGRESS // В работе
+  DONE        // Выполнен
+  CANCELLED   // Отменён
+}
+
+// ─── Статусы платежа ──────────────────────────────────────────
+enum PaymentStatus {
+  PENDING
+  SUCCEEDED
+  FAILED
+  REFUNDED
+}
+
+// ─── Пользователь ─────────────────────────────────────────────
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String   // bcrypt hash
+  name      String
+  phone     String?
+  role      Role     @default(USER)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Связи
+  addresses     Address[]
+  subscriptions Subscription[]
+  orders        Order[]
+  payments      Payment[]
+  reviews       Review[]
+
+  @@index([email])
+  @@index([role])
+}
+
+// ─── Адреса пользователя ──────────────────────────────────────
+model Address {
+  id        String   @id @default(cuid())
+  userId    String
+  label     String   // "Дача", "Дом в Истре" и т.д.
+  address   String   // Полный адрес
+  isDefault Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  user   User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  orders Order[]
+
+  @@index([userId])
+}
+
+// ─── Подписка ─────────────────────────────────────────────────
+model Subscription {
+  id        String             @id @default(cuid())
+  userId    String
+  plan      Plan
+  status    SubscriptionStatus @default(ACTIVE)
+  startDate DateTime           @default(now())
+  endDate   DateTime?
+  price     Int                // В рублях
+  createdAt DateTime           @default(now())
+  updatedAt DateTime           @updatedAt
+
+  user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  payments Payment[]
+
+  @@index([userId])
+  @@index([status])
+}
+
+// ─── Заказ / Визит ────────────────────────────────────────────
+model Order {
+  id          String      @id @default(cuid())
+  userId      String
+  addressId   String?
+  serviceType String      // Тип услуги (вывоз мусора, уход за участком и т.д.)
+  status      OrderStatus @default(NEW)
+  scheduledAt DateTime    // Когда запланирован визит
+  completedAt DateTime?   // Когда выполнен
+  price       Int         // В рублях
+  comment     String?     // Комментарий пользователя
+  teamNote    String?     // Заметка бригады (только для ADMIN)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  address  Address?  @relation(fields: [addressId], references: [id])
+  payments Payment[]
+  review   Review?
+
+  @@index([userId])
+  @@index([status])
+  @@index([scheduledAt])
+}
+
+// ─── Платёж ───────────────────────────────────────────────────
+model Payment {
+  id             String        @id @default(cuid())
+  userId         String
+  orderId        String?
+  subscriptionId String?
+  amount         Int           // В рублях
+  status         PaymentStatus @default(PENDING)
+  provider       String        @default("yukassa") // yukassa, card и т.д.
+  externalId     String?       // ID платежа в ЮKassa
+  metadata       Json?         // Дополнительные данные от платёжной системы
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  order        Order?        @relation(fields: [orderId], references: [id])
+  subscription Subscription? @relation(fields: [subscriptionId], references: [id])
+
+  @@index([userId])
+  @@index([status])
+  @@index([externalId])
+}
+
+// ─── Отзыв ────────────────────────────────────────────────────
+model Review {
+  id        String   @id @default(cuid())
+  userId    String
+  orderId   String   @unique // Один отзыв на один заказ
+  rating    Int      // 1–5
+  comment   String?
+  createdAt DateTime @default(now())
+
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  order Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([orderId])
+}

@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Fonts are loaded via next/font/google in app/layout.tsx — no @import needed here */
+
+/* ─── CSS-переменные ──────────────────────────────────────────── */
+:root {
+  --color-brand: #1D9E75;
+  --color-brand-light: #5DCAA5;
+  --color-brand-pale: #E8F7F2;
+  --color-dark: #0F1A16;
+}
+
+/* ─── База ────────────────────────────────────────────────────── */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-inter text-gray-900 bg-white antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-raleway;
+  }
+}
+
+/* ─── Компоненты ──────────────────────────────────────────────── */
+@layer components {
+  /* Бегущая строка */
+  .ticker-wrapper {
+    @apply overflow-hidden whitespace-nowrap;
+  }
+
+  .ticker-track {
+    @apply inline-flex animate-ticker;
+  }
+
+  .ticker-track:hover {
+    animation-play-state: paused;
+  }
+
+  /* Кнопки */
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-xl bg-brand-green text-white font-semibold
+           px-6 py-3 transition-all duration-200 hover:bg-brand-green/90 hover:shadow-lg
+           active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-xl border-2 border-white text-white
+           font-semibold px-6 py-3 transition-all duration-200 hover:bg-white hover:text-brand-green
+           active:scale-95;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center rounded-xl border-2 border-brand-green
+           text-brand-green font-semibold px-6 py-3 transition-all duration-200
+           hover:bg-brand-green hover:text-white active:scale-95;
+  }
+
+  /* Карточки */
+  .card {
+    @apply bg-white rounded-2xl shadow-sm border border-gray-100 p-6;
+  }
+
+  .card-hover {
+    @apply card transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+  }
+
+  /* Анимация появления при скролле */
+  .reveal {
+    @apply opacity-0;
+    animation: fadeUp 0.6s ease-out forwards;
+  }
+
+  .reveal-delay-1 { animation-delay: 0.1s; }
+  .reveal-delay-2 { animation-delay: 0.2s; }
+  .reveal-delay-3 { animation-delay: 0.3s; }
+  .reveal-delay-4 { animation-delay: 0.4s; }
+  .reveal-delay-5 { animation-delay: 0.5s; }
+  .reveal-delay-6 { animation-delay: 0.6s; }
+}
+
+/* ─── Утилиты ─────────────────────────────────────────────────── */
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-brand bg-clip-text text-transparent;
+  }
+
+  .section-padding {
+    @apply py-16 md:py-24;
+  }
+
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Кастомный скроллбар */
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    @apply bg-gray-100;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    @apply bg-brand-green rounded-full;
+  }
+}

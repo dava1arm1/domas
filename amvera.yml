@@ -1,0 +1,11 @@
+---
+meta:
+  environment: nodejs
+  toolVersion: "20"
+build:
+  buildDirectory: .
+  buildCommand: npm install && npx prisma generate && npm run build
+run:
+  runDirectory: .
+  runCommand: npm start
+  containerPort: 3000

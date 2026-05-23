@@ -1,0 +1,27 @@
+// Расширение типов NextAuth для поддержки role и id
+import { UserRole } from "./index";
+import "next-auth";
+import "next-auth/jwt";
+
+declare module "next-auth" {
+  interface Session {
+    user: {
+      id: string;
+      name?: string | null;
+      email?: string | null;
+      role: UserRole;
+    };
+  }
+
+  interface User {
+    id: string;
+    role: UserRole;
+  }
+}
+
+declare module "next-auth/jwt" {
+  interface JWT {
+    id: string;
+    role: UserRole;
+  }
+}
