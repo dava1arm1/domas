@@ -25,6 +25,7 @@ yarn-error.log*
 
 # Local env files — НИКОГДА не коммить!
 .env
+.env*
 .env*.local
 
 # Vercel
