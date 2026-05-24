@@ -23,7 +23,9 @@
       "Bash(git rm *)",
       "Bash(git commit -m ' *)",
       "Bash(git push *)",
-      "Bash(openssl rand *)"
+      "Bash(openssl rand *)",
+      "Bash(git commit *)",
+      "Bash(vercel --version)"
     ],
     "additionalDirectories": [
       "/Users/davidmikaelyan/Desktop/domas/app/api/auth"

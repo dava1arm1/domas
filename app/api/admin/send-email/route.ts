@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 /**
  * Email рассылка через UniSender или SendPulse
  *
