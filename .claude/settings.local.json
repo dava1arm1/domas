@@ -25,7 +25,11 @@
       "Bash(git push *)",
       "Bash(openssl rand *)",
       "Bash(git commit *)",
-      "Bash(vercel --version)"
+      "Bash(vercel --version)",
+      "Bash(npm run *)",
+      "Bash(/usr/local/bin/npm run *)",
+      "Bash(/Users/davidmikaelyan/.nvm/versions/node/v20.20.2/bin/npm run *)",
+      "Bash(/Users/davidmikaelyan/.nvm/versions/node/v20.20.2/bin/node /Users/davidmikaelyan/.nvm/versions/node/v20.20.2/bin/npm run build)"
     ],
     "additionalDirectories": [
       "/Users/davidmikaelyan/Desktop/domas/app/api/auth"
