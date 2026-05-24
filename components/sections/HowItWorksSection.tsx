@@ -1,21 +1,23 @@
+import { ClipboardIcon, PhoneIcon, CheckCircleIcon } from "@/components/ui/icons";
+
 const STEPS = [
   {
     number: "01",
-    icon: "📋",
+    icon: <ClipboardIcon size={36} />,
     title: "Выберите тариф или услугу",
     description:
       "Зарегистрируйтесь за 2 минуты, выберите подходящий тариф или разовую услугу и укажите адрес.",
   },
   {
     number: "02",
-    icon: "📞",
+    icon: <PhoneIcon size={36} />,
     title: "Мы свяжемся удобным способом",
     description:
       "Менеджер свяжется в течение 5 минут, уточнит детали и согласует удобное расписание визитов.",
   },
   {
     number: "03",
-    icon: "✅",
+    icon: <CheckCircleIcon size={36} />,
     title: "Наслаждайтесь результатом",
     description:
       "После каждой услуги вы оцениваете качество — это помогает нам становиться лучше.",
@@ -43,7 +45,7 @@ export function HowItWorksSection() {
             <div key={step.number} className="relative flex flex-col items-center text-center">
               {/* Иконка с номером */}
               <div className="relative mb-6">
-                <div className="flex items-center justify-center h-20 w-20 rounded-2xl bg-brand-green-pale text-4xl">
+                <div className="flex items-center justify-center h-20 w-20 rounded-2xl bg-brand-green-pale">
                   {step.icon}
                 </div>
                 <span className="absolute -top-2 -right-2 bg-brand-green text-white text-xs font-bold rounded-full h-6 w-6 flex items-center justify-center">

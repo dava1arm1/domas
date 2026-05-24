@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { MAIN_SUBSCRIPTION, ADDON_SUBSCRIPTIONS } from "@/constants/pricing";
+import { ADDON_ICONS } from "@/constants/icons";
 import { formatPrice } from "@/lib/utils";
 
 export function PricingSection() {
@@ -138,7 +139,7 @@ export function PricingSection() {
                   {/* Иконка + название */}
                   <div className="flex items-center gap-3 flex-1 min-w-0">
                     <div className="h-11 w-11 rounded-xl bg-brand-green-pale flex items-center justify-center text-xl flex-shrink-0">
-                      {plan.icon}
+                      {ADDON_ICONS[plan.id] ?? plan.icon}
                     </div>
                     <div className="min-w-0">
                       <h4 className="font-raleway font-bold text-gray-900 text-base">

@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { SERVICES } from "@/constants/services";
+import { SERVICE_ICONS } from "@/constants/icons";
 import type { Service } from "@/types";
 
 // ─── Модальное окно услуги ─────────────────────────────────────
@@ -45,7 +46,7 @@ function ServiceModal({
                 className="flex items-center justify-center h-14 w-14 rounded-2xl text-3xl flex-shrink-0"
                 style={{ backgroundColor: service.bgColor }}
               >
-                {service.icon}
+                {SERVICE_ICONS[service.id] ?? service.icon}
               </div>
               <div>
                 <div className="flex items-center gap-2 flex-wrap">
@@ -175,7 +176,7 @@ export function ServicesSection() {
                       className="flex items-center justify-center h-12 w-12 rounded-xl text-2xl flex-shrink-0"
                       style={{ backgroundColor: service.bgColor }}
                     >
-                      {service.icon}
+                      {SERVICE_ICONS[service.id] ?? service.icon}
                     </div>
                     <div className="flex flex-col items-end gap-1.5 min-h-[28px]">
                       {service.isPrimarySubscription ? (
