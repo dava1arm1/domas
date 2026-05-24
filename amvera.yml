@@ -1,11 +1,18 @@
----
 meta:
   environment: nodejs
-  toolVersion: "20"
+  toolchain:
+    name: npm
+    version: "20"
 build:
-  buildDirectory: .
-  buildCommand: npm install && npx prisma generate && npx prisma db push --accept-data-loss && npm run build
+  skip: false
+  additionalCommands: npx prisma generate && npx prisma db push --accept-data-loss && npm run build
+  artifacts:
+    "*": /
 run:
-  runDirectory: .
-  runCommand: npm start
-  containerPort: 3000
+  scriptName: null
+  scriptArguments: null
+  nodeArguments: null
+  command: npm run start
+  persistenceMount: /data
+  containerPort: "3000"
+  servicePort: "80"
