@@ -20,6 +20,19 @@ export async function POST(req: NextRequest) {
 
     const { name, email, password, phone } = result.data;
     const plan = body.plan ?? "COMFORT";
+    const incomingReferralCode: string | undefined = body.referralCode;
+
+    // Валидируем реферальный код, если передан
+    let referredBy: string | undefined;
+    if (incomingReferralCode) {
+      const referrer = await db.user.findUnique({
+        where: { referralCode: incomingReferralCode.trim().toUpperCase() },
+        select: { id: true },
+      });
+      if (referrer) {
+        referredBy = incomingReferralCode.trim().toUpperCase();
+      }
+    }
 
     // Проверяем, не занят ли email
     const existingUser = await db.user.findUnique({
@@ -49,6 +62,7 @@ export async function POST(req: NextRequest) {
         email: email.toLowerCase(),
         password: hashedPassword,
         phone: phone || null,
+        referredBy: referredBy ?? null,
         subscriptions: {
           create: {
             plan: plan as "BASIC" | "COMFORT" | "MAX",
@@ -63,6 +77,10 @@ export async function POST(req: NextRequest) {
         email: true,
       },
     });
+
+    // Генерируем уникальный реферальный код для нового пользователя
+    const referralCode = Math.random().toString(36).substring(2, 8).toUpperCase();
+    await db.user.update({ where: { id: user.id }, data: { referralCode } });
 
     return NextResponse.json(
       { message: "Аккаунт создан успешно", user },

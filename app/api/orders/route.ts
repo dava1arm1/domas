@@ -4,7 +4,6 @@ import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { orderSchema } from "@/lib/validations";
 
 // GET /api/orders — получить заказы текущего пользователя
 export async function GET(req: NextRequest) {
@@ -41,7 +40,7 @@ export async function GET(req: NextRequest) {
   });
 }
 
-// POST /api/orders — создать новый заказ
+// POST /api/orders — создать новый заказ (из формы бронирования)
 export async function POST(req: NextRequest) {
   const session = await getServerSession(authOptions);
   if (!session) {
@@ -50,23 +49,57 @@ export async function POST(req: NextRequest) {
 
   try {
     const body = await req.json();
-    const result = orderSchema.safeParse(body);
-    if (!result.success) {
+
+    if (!body.serviceType || !body.scheduledAt) {
       return NextResponse.json(
-        { error: result.error.errors[0]?.message ?? "Ошибка валидации" },
+        { error: "serviceType и scheduledAt обязательны" },
         { status: 400 }
       );
+    }
+
+    // Generate unique order number
+    const orderCount = await db.order.count();
+    const orderNumber = `DOMAS-${String(1000 + orderCount + 1).padStart(4, "0")}`;
+
+    // Accept both full ISO datetime and date-only "YYYY-MM-DD"
+    let scheduledAt: Date;
+    if (/^\d{4}-\d{2}-\d{2}$/.test(String(body.scheduledAt))) {
+      scheduledAt = new Date(`${body.scheduledAt}T09:00:00`);
+    } else {
+      scheduledAt = new Date(body.scheduledAt);
+    }
+
+    // If addressId not provided but inline newAddress given — auto-create it
+    let addressId: string | null = body.addressId ?? null;
+    if (!addressId && body.newAddress?.fullAddress) {
+      const addr = await db.address.create({
+        data: {
+          userId: session.user.id,
+          label: body.newAddress.label ?? "Адрес",
+          address: body.newAddress.fullAddress,
+          city: body.newAddress.city ?? null,
+          landmark: body.newAddress.landmark ?? null,
+        },
+      });
+      addressId = addr.id;
     }
 
     const order = await db.order.create({
       data: {
         userId: session.user.id,
-        serviceType: result.data.serviceType,
-        scheduledAt: new Date(result.data.scheduledAt),
-        addressId: result.data.addressId ?? null,
-        comment: result.data.comment ?? null,
+        serviceType: body.serviceType,
+        scheduledAt,
+        addressId,
+        comment: body.specialRequests ?? body.comment ?? null,
         price: 0,
         status: "NEW",
+        timeSlot: body.timeSlot ?? null,
+        isRecurring: body.isRecurring ?? false,
+        recurringType: body.recurringType ?? null,
+        specialRequests: body.specialRequests ?? null,
+        promoCode: body.promoCode ?? null,
+        paymentMethod: body.paymentMethod ?? "cash",
+        orderNumber,
       },
     });
 

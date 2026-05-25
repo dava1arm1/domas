@@ -18,6 +18,7 @@ export default async function DashboardPage() {
     db.user.findUnique({
       where: { id: session.user.id },
       include: { addresses: true },
+      // coinBalance, referralCode are scalar fields — always returned
     }),
     db.order.findMany({
       where: { userId: session.user.id },
@@ -40,6 +41,7 @@ export default async function DashboardPage() {
       user={user}
       orders={orders}
       subscription={subscription}
+      coinBalance={(user as any).coinBalance ?? 0}
     />
   );
 }

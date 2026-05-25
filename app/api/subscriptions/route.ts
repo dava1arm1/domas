@@ -30,7 +30,8 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    const { plan, action } = await req.json();
+    const body = await req.json();
+    const { plan, action, address, city, landmark } = body;
 
     const planPrices: Record<string, number> = {
       BASIC: 1490,
@@ -39,7 +40,6 @@ export async function POST(req: NextRequest) {
     };
 
     if (action === "cancel") {
-      // Отмена подписки
       await db.subscription.updateMany({
         where: { userId: session.user.id, status: "ACTIVE" },
         data: { status: "CANCELLED", endDate: new Date() },
@@ -48,7 +48,6 @@ export async function POST(req: NextRequest) {
     }
 
     if (action === "pause") {
-      // Приостановка
       await db.subscription.updateMany({
         where: { userId: session.user.id, status: "ACTIVE" },
         data: { status: "PAUSED" },
@@ -57,7 +56,6 @@ export async function POST(req: NextRequest) {
     }
 
     if (action === "resume") {
-      // Возобновление
       await db.subscription.updateMany({
         where: { userId: session.user.id, status: "PAUSED" },
         data: { status: "ACTIVE" },
@@ -65,16 +63,18 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ message: "Подписка возобновлена" });
     }
 
-    // Смена тарифа
+    // Создание / смена тарифа
     if (!plan || !planPrices[plan]) {
       return NextResponse.json({ error: "Некорректный тариф" }, { status: 400 });
     }
 
+    // Отменяем текущую активную подписку
     await db.subscription.updateMany({
       where: { userId: session.user.id, status: { in: ["ACTIVE", "PAUSED"] } },
       data: { status: "CANCELLED", endDate: new Date() },
     });
 
+    // Создаём новую подписку
     const subscription = await db.subscription.create({
       data: {
         userId: session.user.id,
@@ -83,6 +83,26 @@ export async function POST(req: NextRequest) {
         price: planPrices[plan],
       },
     });
+
+    // Если передан адрес — сохраняем как основной
+    if (address?.trim()) {
+      // Снимаем флаг isDefault со всех существующих адресов
+      await db.address.updateMany({
+        where: { userId: session.user.id },
+        data: { isDefault: false },
+      });
+      // Создаём новый основной адрес
+      await db.address.create({
+        data: {
+          userId: session.user.id,
+          label: "Дом",
+          address: address.trim(),
+          city: city?.trim() ?? null,
+          landmark: landmark?.trim() ?? null,
+          isDefault: true,
+        },
+      });
+    }
 
     return NextResponse.json({ data: subscription }, { status: 201 });
   } catch (error) {

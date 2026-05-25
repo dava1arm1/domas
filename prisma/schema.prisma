@@ -16,6 +16,16 @@ enum Role {
   ADMIN
 }
 
+// ─── Типы транзакций ДомоКоин ─────────────────────────────────
+enum CoinTransactionType {
+  EARNED_ORDER
+  EARNED_REVIEW
+  EARNED_REFERRAL
+  EARNED_WELCOME
+  SPENT_DISCOUNT
+  EXPIRED
+}
+
 // ─── Статусы подписки ─────────────────────────────────────────
 enum SubscriptionStatus {
   ACTIVE
@@ -48,32 +58,57 @@ enum PaymentStatus {
 
 // ─── Пользователь ─────────────────────────────────────────────
 model User {
-  id        String   @id @default(cuid())
-  email     String   @unique
-  password  String   // bcrypt hash
-  name      String
-  phone     String?
-  role      Role     @default(USER)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id           String   @id @default(cuid())
+  email        String   @unique
+  password     String
+  name         String
+  phone        String?
+  role         Role     @default(USER)
+  coinBalance  Int      @default(0)
+  referralCode String?  @unique
+  referredBy   String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 
-  // Связи
-  addresses     Address[]
-  subscriptions Subscription[]
-  orders        Order[]
-  payments      Payment[]
-  reviews       Review[]
+  addresses        Address[]
+  subscriptions    Subscription[]
+  orders           Order[]
+  payments         Payment[]
+  reviews          Review[]
+  activityLogs     ActivityLog[]
+  coinTransactions CoinTransaction[]
 
   @@index([email])
   @@index([role])
+  @@index([referralCode])
+}
+
+// ─── ДомоКоин транзакции ──────────────────────────────────────
+model CoinTransaction {
+  id          String              @id @default(cuid())
+  userId      String
+  amount      Int
+  type        CoinTransactionType
+  description String
+  orderId     String?
+  expiresAt   DateTime?
+  createdAt   DateTime            @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([createdAt])
+  @@index([expiresAt])
 }
 
 // ─── Адреса пользователя ──────────────────────────────────────
 model Address {
   id        String   @id @default(cuid())
   userId    String
-  label     String   // "Дача", "Дом в Истре" и т.д.
-  address   String   // Полный адрес
+  label     String
+  address   String
+  city      String?
+  landmark  String?
   isDefault Boolean  @default(false)
   createdAt DateTime @default(now())
 
@@ -104,18 +139,25 @@ model Subscription {
 
 // ─── Заказ / Визит ────────────────────────────────────────────
 model Order {
-  id          String      @id @default(cuid())
-  userId      String
-  addressId   String?
-  serviceType String      // Тип услуги (вывоз мусора, уход за участком и т.д.)
-  status      OrderStatus @default(NEW)
-  scheduledAt DateTime    // Когда запланирован визит
-  completedAt DateTime?   // Когда выполнен
-  price       Int         // В рублях
-  comment     String?     // Комментарий пользователя
-  teamNote    String?     // Заметка бригады (только для ADMIN)
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
+  id              String      @id @default(cuid())
+  userId          String
+  addressId       String?
+  serviceType     String
+  status          OrderStatus @default(NEW)
+  scheduledAt     DateTime
+  completedAt     DateTime?
+  price           Int         @default(0)
+  comment         String?
+  teamNote        String?
+  timeSlot        String?
+  isRecurring     Boolean     @default(false)
+  recurringType   String?
+  specialRequests String?     @db.Text
+  promoCode       String?
+  paymentMethod   String      @default("cash")
+  orderNumber     String?     @unique
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
 
   user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   address  Address?  @relation(fields: [addressId], references: [id])
@@ -164,4 +206,26 @@ model Review {
 
   @@index([userId])
   @@index([orderId])
+}
+
+// ─── Настройки сайта (CMS) ────────────────────────────────────
+model Setting {
+  key       String   @id
+  value     String   @db.Text
+  updatedAt DateTime @updatedAt
+}
+
+// ─── Журнал действий администратора ──────────────────────────
+model ActivityLog {
+  id        String   @id @default(cuid())
+  adminId   String
+  action    String   // "UPDATE_SETTING", "UPDATE_ORDER", "SEND_EMAIL", etc.
+  target    String?  // ID целевой сущности
+  detail    String?  // Человекочитаемое описание
+  createdAt DateTime @default(now())
+
+  admin User @relation(fields: [adminId], references: [id], onDelete: Cascade)
+
+  @@index([adminId])
+  @@index([createdAt])
 }

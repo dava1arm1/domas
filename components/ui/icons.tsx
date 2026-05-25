@@ -45,9 +45,21 @@ export function DropIcon({ size = 32, color = "#1D9E75", className }: IconProps)
 export function SnowflakeIcon({ size = 32, color = "#1D9E75", className }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className={className}>
-      <line x1="12" y1="2" x2="12" y2="22" />
-      <line x1="2" y1="12" x2="22" y2="12" />
-      <path d="M12 2l-2.5 2.5M12 2l2.5 2.5M12 22l-2.5-2.5M12 22l2.5-2.5M2 12l2.5-2.5M2 12l2.5 2.5M22 12l-2.5-2.5M22 12l-2.5 2.5" />
+      <g transform="translate(12,12)">
+        <line x1="0" y1="-9" x2="0" y2="9" />
+        <line x1="-2" y1="-7" x2="0" y2="-9" /><line x1="2" y1="-7" x2="0" y2="-9" />
+        <line x1="-2" y1="7"  x2="0" y2="9"  /><line x1="2" y1="7"  x2="0" y2="9"  />
+      </g>
+      <g transform="translate(12,12) rotate(60)">
+        <line x1="0" y1="-9" x2="0" y2="9" />
+        <line x1="-2" y1="-7" x2="0" y2="-9" /><line x1="2" y1="-7" x2="0" y2="-9" />
+        <line x1="-2" y1="7"  x2="0" y2="9"  /><line x1="2" y1="7"  x2="0" y2="9"  />
+      </g>
+      <g transform="translate(12,12) rotate(120)">
+        <line x1="0" y1="-9" x2="0" y2="9" />
+        <line x1="-2" y1="-7" x2="0" y2="-9" /><line x1="2" y1="-7" x2="0" y2="-9" />
+        <line x1="-2" y1="7"  x2="0" y2="9"  /><line x1="2" y1="7"  x2="0" y2="9"  />
+      </g>
     </svg>
   );
 }

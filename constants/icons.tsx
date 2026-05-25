@@ -13,7 +13,7 @@ export const SERVICE_ICONS: Record<string, React.ReactNode> = {
   construction_waste:  <TruckIcon size={28} />,
   lawn_care:           <LeafIcon size={28} />,
   septic_pumping:      <DropIcon size={28} />,
-  snow_removal:        <SnowflakeIcon size={28} />,
+  snow_removal:        <SnowflakeIcon size={28} color="#38BDF8" />,
   cleaning:            <SparkleIcon size={28} />,
 };
 

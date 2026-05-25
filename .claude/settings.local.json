@@ -29,10 +29,25 @@
       "Bash(npm run *)",
       "Bash(/usr/local/bin/npm run *)",
       "Bash(/Users/davidmikaelyan/.nvm/versions/node/v20.20.2/bin/npm run *)",
-      "Bash(/Users/davidmikaelyan/.nvm/versions/node/v20.20.2/bin/node /Users/davidmikaelyan/.nvm/versions/node/v20.20.2/bin/npm run build)"
+      "Bash(/Users/davidmikaelyan/.nvm/versions/node/v20.20.2/bin/node /Users/davidmikaelyan/.nvm/versions/node/v20.20.2/bin/npm run build)",
+      "Bash(mkdir -p /Users/davidmikaelyan/Desktop/domas/app/api/admin/orders/\\\\[id\\\\])",
+      "Bash(/usr/local/bin/npx prisma *)",
+      "Bash(~/.nvm/nvm-exec npx *)",
+      "Bash(node -e \"require\\('child_process'\\).execSync\\('npx prisma db push --accept-data-loss', {stdio: 'inherit', shell: true}\\)\")",
+      "Bash(npx tsc *)",
+      "Bash(/usr/local/bin/node node_modules/.bin/tsc --noEmit --skipLibCheck)",
+      "Bash(node_modules/.bin/tsc --noEmit --skipLibCheck)",
+      "Bash(~/.nvm/versions/node/v20.20.2/bin/node /Users/davidmikaelyan/Desktop/domas/node_modules/.bin/tsc --noEmit --skipLibCheck)",
+      "Bash(/Users/davidmikaelyan/Desktop/domas/node_modules/.bin/tsc --noEmit)",
+      "Bash(/Users/davidmikaelyan/Desktop/domas/node_modules/.bin/tsc --noEmit --skipLibCheck)",
+      "Bash(~/.nvm/versions/node/v20.20.2/bin/node /Users/davidmikaelyan/Desktop/domas/node_modules/typescript/bin/tsc --noEmit --skipLibCheck)",
+      "Bash(python3)",
+      "Bash(rm /Users/davidmikaelyan/Desktop/domas/amvera.yml)"
     ],
     "additionalDirectories": [
-      "/Users/davidmikaelyan/Desktop/domas/app/api/auth"
+      "/Users/davidmikaelyan/Desktop/domas/app/api/auth",
+      "/Users/davidmikaelyan/Desktop/domas/app/api/admin/orders",
+      "/Users/davidmikaelyan/Desktop/domas"
     ]
   }
 }
