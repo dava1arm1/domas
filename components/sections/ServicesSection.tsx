@@ -138,8 +138,42 @@ function ServiceModal({
 }
 
 // ─── Секция услуг ─────────────────────────────────────────────
-export function ServicesSection() {
+interface ServicesSectionProps {
+  servicesData?: string; // JSON из настроек (из site.services)
+}
+
+export function ServicesSection({ servicesData }: ServicesSectionProps) {
   const [selectedService, setSelectedService] = useState<Service | null>(null);
+
+  // Мержим данные из настроек с константами (цвета/иконки берём из констант)
+  const services: Service[] = (() => {
+    if (!servicesData) return SERVICES;
+    try {
+      const overrides = JSON.parse(servicesData) as Array<{
+        id: string; title?: string; description?: string;
+        fullDescription?: string; included?: string[];
+        frequency?: string; priceNote?: string; active?: boolean;
+      }>;
+      return overrides
+        .filter((o) => o.active !== false)
+        .map((o) => {
+          const base = SERVICES.find((s) => s.id === o.id);
+          if (!base) return null;
+          return {
+            ...base,
+            title: o.title ?? base.title,
+            description: o.description ?? base.description,
+            fullDescription: o.fullDescription ?? base.fullDescription,
+            included: o.included ?? base.included,
+            frequency: o.frequency ?? base.frequency,
+            priceNote: o.priceNote ?? base.priceNote,
+          };
+        })
+        .filter(Boolean) as Service[];
+    } catch {
+      return SERVICES;
+    }
+  })();
 
   return (
     <>
@@ -160,7 +194,7 @@ export function ServicesSection() {
 
           {/* Карточки услуг */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {SERVICES.map((service) => (
+            {services.map((service) => (
               <button
                 key={service.id}
                 onClick={() => setSelectedService(service)}

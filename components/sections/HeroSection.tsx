@@ -32,7 +32,7 @@ export function HeroSection({
   const rest     = words.join(" ");
 
   return (
-    <section className="relative min-h-[70vh] md:min-h-screen flex items-end md:items-center overflow-hidden">
+    <section className="relative min-h-[100dvh] flex items-center overflow-hidden">
 
       {/* Background video */}
       {videoEnabled ? (
@@ -59,7 +59,7 @@ export function HeroSection({
       <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black/70 to-transparent" />
 
       {/* Content */}
-      <div className="relative container-custom w-full pt-20 pb-12 md:pt-32 md:pb-24">
+      <div className="relative container-custom w-full pt-24 pb-16 md:pt-40 md:pb-24">
         <div className="max-w-3xl">
 
           {/* Badge */}

@@ -100,6 +100,8 @@ export function DashboardShell({ user, children, hasPendingReview }: Props) {
   const pathname = usePathname();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const [headerHidden, setHeaderHidden] = useState(false);
+  const lastScrollRef = useRef(0);
 
   const pageTitle = PAGE_TITLES[pathname] ?? "Кабинет";
 
@@ -114,8 +116,22 @@ export function DashboardShell({ user, children, hasPendingReview }: Props) {
     return () => document.removeEventListener("mousedown", handleClick);
   }, []);
 
-  // Close dropdown on route change
-  useEffect(() => { setDropdownOpen(false); }, [pathname]);
+  // Close dropdown on route change + reset header
+  useEffect(() => {
+    setDropdownOpen(false);
+    setHeaderHidden(false);
+    lastScrollRef.current = 0;
+  }, [pathname]);
+
+  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    if (window.innerWidth >= 1024) return;
+    const currentY = e.currentTarget.scrollTop;
+    const diff = currentY - lastScrollRef.current;
+    lastScrollRef.current = currentY;
+    if (currentY < 60) { setHeaderHidden(false); return; }
+    if (diff > 5) setHeaderHidden(true);
+    else if (diff < -5) setHeaderHidden(false);
+  };
 
   return (
     /*
@@ -242,11 +258,23 @@ export function DashboardShell({ user, children, hasPendingReview }: Props) {
          *  Mobile:  logo centered, bell on right.                 *
          *  Desktop: logo left, page title center, bell+avatar right *
          */}
+        <div className={`flex-shrink-0 overflow-hidden transition-[max-height] duration-300 ease-in-out lg:!max-h-16 ${headerHidden ? "max-h-0" : "max-h-14"}`}>
         <header
-          className="flex-shrink-0 h-14 lg:h-16 bg-brand-dark flex items-center px-4 lg:px-6 z-30"
+          className="h-14 lg:h-16 bg-brand-dark flex items-center px-4 lg:px-6 z-30"
           style={{ paddingTop: "env(safe-area-inset-top)" }}
         >
-          {/* Left: logo (matches site header exactly) */}
+          {/* Back arrow — mobile only, returns to main site */}
+          <Link
+            href="/"
+            className="lg:hidden -ml-1 mr-1 p-2 text-white/50 hover:text-white transition-colors rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5DCAA5]"
+            aria-label="На главную"
+          >
+            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+          </Link>
+
+          {/* Logo */}
           <Link
             href="/"
             className="font-raleway font-black text-2xl tracking-tight flex-shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5DCAA5] rounded"
@@ -293,6 +321,7 @@ export function DashboardShell({ user, children, hasPendingReview }: Props) {
             </Link>
           </div>
         </header>
+        </div>
 
         {/* ── SCROLLABLE CONTENT ───────────────────────────────── *
          *  This is the single scroll container for all pages.      *
@@ -302,6 +331,7 @@ export function DashboardShell({ user, children, hasPendingReview }: Props) {
         <div
           className="flex-1 overflow-y-auto overscroll-contain"
           style={{ WebkitOverflowScrolling: "touch" } as React.CSSProperties}
+          onScroll={handleScroll}
         >
           {children}
 

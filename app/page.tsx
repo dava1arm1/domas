@@ -21,6 +21,7 @@ export default async function HomePage() {
     "hero.cta_primary",
     "hero.cta_secondary",
     "hero.video_enabled",
+    "site.services",
   ]);
 
   return (
@@ -36,7 +37,7 @@ export default async function HomePage() {
           videoEnabled={settings["hero.video_enabled"] !== "false"}
         />
         <Ticker />
-        <ServicesSection />
+        <ServicesSection servicesData={settings["site.services"]} />
         <HowItWorksSection />
         <PricingSection />
         <DomoCoinSection />
