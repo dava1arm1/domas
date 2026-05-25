@@ -79,8 +79,8 @@ export default function RegisterPage() {
       {/* Левая панель — выбранный тариф */}
       <div className="hidden lg:flex lg:w-1/2 bg-brand-dark flex-col justify-between p-12">
         <Link href="/" className="font-raleway font-black text-2xl">
-          <span className="text-brand-green-light">Dom</span>
-          <span className="text-white">as</span>
+          <span className="text-brand-green-light">Дом</span>
+          <span className="text-white">ас</span>
         </Link>
 
         <div>
@@ -127,8 +127,8 @@ export default function RegisterPage() {
         <div className="w-full max-w-md">
           <div className="lg:hidden text-center mb-8">
             <Link href="/" className="font-raleway font-black text-3xl">
-              <span className="text-brand-green">Dom</span>
-              <span className="text-gray-900">as</span>
+              <span className="text-brand-green">Дом</span>
+              <span className="text-gray-900">ас</span>
             </Link>
           </div>
 

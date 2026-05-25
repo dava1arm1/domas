@@ -104,8 +104,8 @@ export function AdminClient({ stats, users, orders }: Props) {
         <div className="container-custom py-3 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <Link href="/" className="font-raleway font-black text-xl">
-              <span className="text-brand-green-light">Dom</span>
-              <span className="text-white">as</span>
+              <span className="text-brand-green-light">Дом</span>
+              <span className="text-white">ас</span>
             </Link>
             <span className="text-white/30">|</span>
             <span className="text-white/70 text-sm">Администрирование</span>

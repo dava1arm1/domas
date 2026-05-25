@@ -151,8 +151,8 @@ export function DashboardShell({ user, children, hasPendingReview }: Props) {
         {/* Logo */}
         <div className="h-16 flex items-center px-5 flex-shrink-0 border-b border-white/[0.06]">
           <Link href="/" className="font-raleway font-black text-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D9E75] rounded-lg">
-            <span className="text-[#5DCAA5]">Dom</span>
-            <span className="text-white">as</span>
+            <span className="text-[#5DCAA5]">Дом</span>
+            <span className="text-white">ас</span>
           </Link>
         </div>
 
@@ -280,8 +280,8 @@ export function DashboardShell({ user, children, hasPendingReview }: Props) {
             className="font-raleway font-black text-2xl tracking-tight flex-shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5DCAA5] rounded"
             aria-label="Domas — на главную"
           >
-            <span className="text-brand-green-light">Dom</span>
-            <span className="text-white">as</span>
+            <span className="text-brand-green-light">Дом</span>
+            <span className="text-white">ас</span>
           </Link>
 
           {/* Center: page title (desktop only) */}

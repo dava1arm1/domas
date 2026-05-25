@@ -11,8 +11,8 @@ export function Footer() {
           {/* Бренд */}
           <div className="md:col-span-1">
             <Link href="/" className="font-raleway font-black text-2xl">
-              <span className="text-brand-green-light">Dom</span>
-              <span className="text-white">as</span>
+              <span className="text-brand-green-light">Дом</span>
+              <span className="text-white">ас</span>
             </Link>
             <p className="mt-4 text-white/60 text-sm leading-relaxed">
               Премиальный сервис по обслуживанию частных домов в Москве и МО

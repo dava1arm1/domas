@@ -82,8 +82,8 @@ function LoginContent() {
             На главную
           </Link>
           <Link href="/" className="font-raleway font-black text-2xl">
-            <span className="text-brand-green-light">Dom</span>
-            <span className="text-white">as</span>
+            <span className="text-brand-green-light">Дом</span>
+            <span className="text-white">ас</span>
           </Link>
         </div>
 
@@ -115,8 +115,8 @@ function LoginContent() {
           {/* Логотип на мобильном */}
           <div className="lg:hidden text-center mb-8">
             <Link href="/" className="font-raleway font-black text-3xl">
-              <span className="text-brand-green">Dom</span>
-              <span className="text-gray-900">as</span>
+              <span className="text-brand-green">Дом</span>
+              <span className="text-gray-900">ас</span>
             </Link>
           </div>
 

@@ -47,8 +47,8 @@ export function MobileMenu({ isOpen, onClose, session, onSignOut }: MobileMenuPr
         {/* Шапка drawer */}
         <div className="flex items-center justify-between px-6 h-14 border-b border-white/10">
           <span className="font-raleway font-black text-xl">
-            <span className="text-brand-green-light">Dom</span>
-            <span className="text-white">as</span>
+            <span className="text-brand-green-light">Дом</span>
+            <span className="text-white">ас</span>
           </span>
           <button
             onClick={onClose}

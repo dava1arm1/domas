@@ -52,8 +52,8 @@ export function Header() {
               className="font-raleway font-black text-2xl tracking-tight flex-shrink-0"
               aria-label="Domas — на главную"
             >
-              <span className="text-brand-green-light">Dom</span>
-              <span className="text-white">as</span>
+              <span className="text-brand-green-light">Дом</span>
+              <span className="text-white">ас</span>
             </Link>
 
             {/* Правые ссылки + кнопка — только на десктопе */}
