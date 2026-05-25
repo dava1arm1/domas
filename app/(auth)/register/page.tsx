@@ -75,7 +75,7 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen bg-surface-secondary flex">
+    <div className="min-h-[100dvh] bg-surface-secondary flex">
       {/* Левая панель — выбранный тариф */}
       <div className="hidden lg:flex lg:w-1/2 bg-brand-dark flex-col justify-between p-12">
         <Link href="/" className="font-raleway font-black text-2xl">
@@ -132,7 +132,7 @@ export default function RegisterPage() {
             </Link>
           </div>
 
-          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 sm:p-8">
             <h1 className="font-raleway font-black text-2xl text-gray-900 mb-2">
               Создать аккаунт
             </h1>

@@ -29,9 +29,10 @@ export function Header() {
             ? "bg-brand-dark/95 backdrop-blur-md shadow-lg"
             : "bg-transparent"
         )}
+        style={{ paddingTop: "env(safe-area-inset-top)" }}
       >
         <div className="container-custom">
-          <nav className="flex items-center justify-between h-16 md:h-20">
+          <nav className="flex items-center justify-between h-14 md:h-20">
             {/* Левые ссылки — только на десктопе */}
             <div className="hidden md:flex items-center gap-8 flex-1">
               {NAV_LINKS_LEFT.map((link) => (

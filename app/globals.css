@@ -16,10 +16,42 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
+    /* Запрещаем iOS автоматически масштабировать текст при повороте */
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
   }
 
   body {
     @apply font-inter text-gray-900 bg-white antialiased;
+    overflow-x: hidden;
+    /* Убираем синюю рамку при тапе на iOS/Android */
+    -webkit-tap-highlight-color: transparent;
+    /* Correct line-height on mobile */
+    line-height: 1.5;
+  }
+
+  /* Убираем 300ms задержку клика на мобильных */
+  a, button, [role="button"], input[type="submit"], input[type="button"], label {
+    touch-action: manipulation;
+  }
+
+  /* Минимальный font-size 16px для всех input/textarea —
+     предотвращает автозум на iOS при фокусе */
+  input, textarea, select {
+    font-size: max(16px, 1em);
+  }
+
+  /* Корректное отображение изображений */
+  img, video {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Предотвращаем выход текста за границы блоков */
+  p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -96,6 +128,17 @@
 
   .container-custom {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Safe area для iPhone с чёлкой (notch / Dynamic Island) */
+  .safe-top    { padding-top: env(safe-area-inset-top); }
+  .safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
+  .safe-left   { padding-left: env(safe-area-inset-left); }
+  .safe-right  { padding-right: env(safe-area-inset-right); }
+
+  /* Минимальная высота области прокрутки с учётом мобильного браузера */
+  .min-h-screen-mobile {
+    min-height: 100dvh;
   }
 
   /* Кастомный скроллбар */

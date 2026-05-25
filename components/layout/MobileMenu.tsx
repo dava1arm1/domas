@@ -35,13 +35,17 @@ export function MobileMenu({ isOpen, onClose, session, onSignOut }: MobileMenuPr
       {/* Drawer */}
       <aside
         className={cn(
-          "fixed top-0 right-0 bottom-0 z-50 w-72 bg-brand-dark flex flex-col transition-transform duration-300 md:hidden",
+          "fixed top-0 right-0 bottom-0 z-50 w-[min(288px,85vw)] bg-brand-dark flex flex-col transition-transform duration-300 md:hidden",
           isOpen ? "translate-x-0" : "translate-x-full"
         )}
+        style={{
+          paddingTop: "env(safe-area-inset-top)",
+          paddingBottom: "env(safe-area-inset-bottom)",
+        }}
         aria-label="Мобильное меню"
       >
         {/* Шапка drawer */}
-        <div className="flex items-center justify-between px-6 h-16 border-b border-white/10">
+        <div className="flex items-center justify-between px-6 h-14 border-b border-white/10">
           <span className="font-raleway font-black text-xl">
             <span className="text-brand-green-light">Dom</span>
             <span className="text-white">as</span>

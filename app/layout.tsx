@@ -1,5 +1,5 @@
 // Root layout — оборачивает всё приложение
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Raleway, Inter } from "next/font/google";
 import "./globals.css";
 import { SessionProvider } from "@/components/layout/SessionProvider";
@@ -17,6 +17,13 @@ const inter = Inter({
   weight: ["400", "500", "600", "700"],
   display: "swap",
 });
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",      // iPhone notch — контент уходит под чёлку
+  themeColor: "#0F1A16",     // цвет строки браузера на Android
+};
 
 export const metadata: Metadata = {
   title: {
