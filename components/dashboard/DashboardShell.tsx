@@ -324,18 +324,11 @@ export function DashboardShell({ user, children, hasPendingReview }: Props) {
          */}
         <div
           id="dash-scroll"
-          className="flex-1 overflow-y-auto overscroll-contain"
+          className="flex-1 flex flex-col overflow-hidden lg:overflow-y-auto overscroll-contain"
           style={{ WebkitOverflowScrolling: "touch" } as React.CSSProperties}
           onScroll={handleScroll}
         >
           {children}
-
-          {/* Spacer that lifts content above the mobile bottom nav */}
-          <div
-            className="lg:hidden flex-shrink-0"
-            style={{ height: "calc(72px + env(safe-area-inset-bottom))" }}
-            aria-hidden="true"
-          />
         </div>
 
       </div>

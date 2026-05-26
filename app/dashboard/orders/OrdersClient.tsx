@@ -278,7 +278,88 @@ export function OrdersClient({ initialOrders }: Props) {
 
   return (
     <>
-      <div className="max-w-2xl mx-auto px-4 sm:px-6 py-6 lg:py-8">
+      {/* ═══════════ MOBILE LAYOUT ═══════════ */}
+      <div className="lg:hidden flex-1 min-h-0 flex flex-col overflow-hidden">
+        {/* Header */}
+        <div className="flex-shrink-0 flex items-center justify-between px-4 pt-4 pb-3">
+          <h1 className="font-raleway font-black text-xl text-white">Мои заказы</h1>
+          <button
+            onClick={() => setNewOrderOpen(true)}
+            className="flex items-center gap-1.5 bg-brand-green text-white px-3.5 py-2 rounded-xl text-sm font-bold touch-manipulation"
+          >
+            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+            </svg>
+            Заказ
+          </button>
+        </div>
+
+        {/* Tabs */}
+        <div className="flex-shrink-0 flex gap-1 bg-white/[0.05] p-1 rounded-xl mx-4 mb-3">
+          <button
+            onClick={() => setTab("active")}
+            className={`flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-lg text-sm font-semibold transition-all touch-manipulation ${
+              tab === "active" ? "bg-white/[0.10] text-white" : "text-white/30"
+            }`}
+          >
+            Активные
+            {activeOrders.length > 0 && (
+              <span className={`h-5 min-w-[20px] px-1 rounded-full text-[10px] font-bold flex items-center justify-center ${
+                tab === "active" ? "bg-brand-green text-white" : "bg-white/[0.08] text-white/40"
+              }`}>{activeOrders.length}</span>
+            )}
+          </button>
+          <button
+            onClick={() => setTab("history")}
+            className={`flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-lg text-sm font-semibold transition-all touch-manipulation ${
+              tab === "history" ? "bg-white/[0.10] text-white" : "text-white/30"
+            }`}
+          >
+            История
+            {historyOrders.length > 0 && (
+              <span className={`h-5 min-w-[20px] px-1 rounded-full text-[10px] font-bold flex items-center justify-center ${
+                tab === "history" ? "bg-white/[0.08] text-white/60" : "bg-white/[0.06] text-white/30"
+              }`}>{historyOrders.length}</span>
+            )}
+          </button>
+        </div>
+
+        {/* Scrollable orders list */}
+        <div
+          className="flex-1 min-h-0 overflow-y-auto overscroll-contain px-4 space-y-3"
+          style={{ paddingBottom: "calc(72px + env(safe-area-inset-bottom))", WebkitOverflowScrolling: "touch" } as React.CSSProperties}
+        >
+          {tab === "active" && (
+            activeOrders.length === 0 ? (
+              <div className="flex flex-col items-center justify-center text-center py-10">
+                <div className="h-12 w-12 rounded-2xl bg-white/[0.05] border border-white/[0.08] flex items-center justify-center mb-3">
+                  <svg className="h-6 w-6 text-white/20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                  </svg>
+                </div>
+                <p className="font-semibold text-white/60 mb-1">Активных заказов нет</p>
+                <p className="text-white/30 text-sm mb-4">Оформите заявку — мы приедем в удобное время</p>
+                <button
+                  onClick={() => setNewOrderOpen(true)}
+                  className="inline-flex items-center gap-2 bg-brand-green text-white px-4 py-2.5 rounded-xl text-sm font-bold touch-manipulation"
+                >
+                  Заказать услугу
+                </button>
+              </div>
+            ) : activeOrders.map(renderOrder)
+          )}
+          {tab === "history" && (
+            historyOrders.length === 0 ? (
+              <div className="flex items-center justify-center py-10">
+                <p className="text-white/30 text-sm">История появится после выполнения заказов</p>
+              </div>
+            ) : historyOrders.map(renderOrder)
+          )}
+        </div>
+      </div>
+
+      {/* ═══════════ DESKTOP LAYOUT ═══════════ */}
+      <div className="hidden lg:block max-w-2xl mx-auto px-4 sm:px-6 py-6 lg:py-8">
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
           <h1 className="font-raleway font-black text-2xl text-white">Мои заказы</h1>

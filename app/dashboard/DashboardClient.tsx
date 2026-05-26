@@ -101,7 +101,176 @@ export function DashboardClient({ user, orders, subscription, coinBalance = 0 }:
 
   return (
     <>
-      <main>
+      {/* ═══════════════════════════════════════════════════════════
+          MOBILE LAYOUT — static, no scroll, fits viewport exactly
+          ═══════════════════════════════════════════════════════════ */}
+      <main
+        className="lg:hidden flex-1 min-h-0 flex flex-col overflow-hidden px-4"
+        style={{ paddingTop: "12px", paddingBottom: "calc(72px + env(safe-area-inset-bottom))" }}
+      >
+        {/* 1. Greeting */}
+        <div className="flex-shrink-0 mb-3">
+          <h1 className="font-raleway font-black text-xl text-white leading-tight">{getGreeting(user.name)}</h1>
+          <div className="mt-1.5">
+            {subscription ? (
+              <span className="inline-flex items-center gap-1.5 text-[10px] font-semibold text-brand-green-light bg-brand-green/15 border border-brand-green/20 px-2.5 py-0.5 rounded-full">
+                <span className="h-1.5 w-1.5 rounded-full bg-brand-green animate-pulse" />
+                Подписка · {PLAN_LABELS[subscription.plan] ?? subscription.plan}
+              </span>
+            ) : (
+              <span className="inline-flex items-center gap-1.5 text-[10px] font-semibold text-white/40 bg-white/[0.06] px-2.5 py-0.5 rounded-full">
+                Нет активной подписки
+              </span>
+            )}
+          </div>
+        </div>
+
+        {/* 2. Next visit (compact) */}
+        <div className="flex-shrink-0 mb-3">
+          {nextOrder ? (() => {
+            const d       = new Date(nextOrder.scheduledAt);
+            const day     = d.toLocaleString("ru", { day: "numeric" });
+            const month   = d.toLocaleString("ru", { month: "short" });
+            const weekday = d.toLocaleString("ru", { weekday: "short" });
+            const time    = d.toLocaleString("ru", { hour: "2-digit", minute: "2-digit" });
+            return (
+              <div className="relative bg-brand-green/10 border border-brand-green/20 rounded-xl overflow-hidden">
+                <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-brand-green rounded-l-xl" />
+                <div className="pl-5 pr-4 py-3 flex items-center gap-3">
+                  <div className="flex-shrink-0 flex flex-col items-center justify-center bg-brand-green/20 rounded-lg w-11 h-11">
+                    <span className="font-raleway font-black text-xl text-brand-green-light leading-none">{day}</span>
+                    <span className="text-brand-green-light/70 text-[9px] font-bold uppercase">{month}</span>
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-white/40 text-[10px] font-bold uppercase tracking-wider mb-0.5">Ближайший визит</p>
+                    <p className="font-raleway font-bold text-sm text-white truncate">{SERVICE_LABELS[nextOrder.serviceType] ?? nextOrder.serviceType}</p>
+                    <p className="text-brand-green-light text-xs">{weekday}, {time}</p>
+                  </div>
+                  <Badge variant={statusVariantMap[nextOrder.status] ?? "default"}>{getOrderStatusLabel(nextOrder.status)}</Badge>
+                </div>
+              </div>
+            );
+          })() : (
+            <div className="bg-white/[0.04] border border-dashed border-white/[0.10] rounded-xl px-4 py-3 flex items-center gap-3">
+              <div className="h-10 w-10 rounded-lg bg-white/[0.06] flex items-center justify-center flex-shrink-0">
+                <svg className="h-5 w-5 text-white/20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <div>
+                <p className="text-white/50 text-sm font-semibold">Нет запланированных визитов</p>
+                <p className="text-white/30 text-xs">Закажите услугу ниже</p>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* 3. Order CTA */}
+        <div className="flex-shrink-0 mb-3">
+          <button
+            onClick={() => openOrderModal()}
+            className="w-full flex items-center justify-between gap-3 bg-brand-green text-white px-5 py-3.5 rounded-xl active:scale-[0.99] touch-manipulation transition-transform"
+          >
+            <div className="text-left">
+              <p className="font-raleway font-black text-base leading-tight">Заказать услугу</p>
+              <p className="text-white/70 text-xs">Менеджер свяжется за 5 минут</p>
+            </div>
+            <div className="h-9 w-9 rounded-lg bg-white/15 flex items-center justify-center flex-shrink-0">
+              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+              </svg>
+            </div>
+          </button>
+        </div>
+
+        {/* 4. Stats row */}
+        <div className="flex-shrink-0 grid grid-cols-3 gap-2 mb-3">
+          <DarkCard className="p-3">
+            <p className="text-white/30 text-[9px] font-bold uppercase tracking-wider mb-1">Визитов</p>
+            <p className="font-raleway font-black text-2xl text-white leading-none">{thisMonthOrders.length}</p>
+            <p className="text-white/25 text-[10px] mt-0.5">в месяце</p>
+          </DarkCard>
+          <DarkCard className="p-3">
+            <p className="text-white/30 text-[9px] font-bold uppercase tracking-wider mb-1">Подписка</p>
+            {subscription ? (
+              <p className="font-raleway font-bold text-xs text-brand-green-light mt-1">Активна</p>
+            ) : (
+              <p className="text-white/40 text-xs mt-1">Нет</p>
+            )}
+          </DarkCard>
+          <DarkCard className="p-3">
+            <p className="text-white/30 text-[9px] font-bold uppercase tracking-wider mb-1">Платёж</p>
+            {subscription ? (
+              <p className="font-raleway font-bold text-xs text-white mt-1">{formatPrice(subscription.price)}</p>
+            ) : (
+              <Link href="/#pricing" className="text-brand-green-light text-[10px] font-semibold mt-1 block touch-manipulation">Выбрать →</Link>
+            )}
+          </DarkCard>
+        </div>
+
+        {/* 5. DomoCoin bar */}
+        <div className="flex-shrink-0 bg-[#F5C518]/[0.07] border border-[#F5C518]/[0.12] rounded-xl px-4 py-2.5 flex items-center gap-3 mb-3">
+          <DomoCoinIcon size={32} />
+          <div className="flex-1 min-w-0">
+            <p className="text-white/40 text-[9px] font-bold uppercase tracking-widest">ДомоКоины</p>
+            <div className="flex items-baseline gap-1.5">
+              <span className="font-raleway font-black text-lg text-white tabular-nums leading-none">{coinBalance.toLocaleString("ru-RU")}</span>
+              <span className="text-white/25 text-xs">= {coinBalance.toLocaleString("ru-RU")} ₽</span>
+            </div>
+          </div>
+          <Link href="/dashboard/coins" className="text-xs font-semibold text-brand-green-light whitespace-nowrap touch-manipulation">История →</Link>
+        </div>
+
+        {/* 6. Subscription card or CTA — fills remaining space */}
+        <div className="flex-1 min-h-0">
+          {subscription ? (
+            <DarkCard className="h-full overflow-hidden flex flex-col">
+              <div className="bg-gradient-to-r from-brand-green to-[#159a6e] px-4 py-3 flex items-center justify-between flex-shrink-0">
+                <div className="flex items-center gap-2">
+                  <span className="text-xl">♻️</span>
+                  <div>
+                    <p className="text-white font-raleway font-bold text-sm leading-tight">Вывоз мусора</p>
+                    <p className="text-white/70 text-xs">Еженедельно</p>
+                  </div>
+                </div>
+                <span className="flex items-center gap-1 bg-white/20 text-white text-[10px] font-semibold px-2.5 py-1 rounded-full flex-shrink-0">
+                  <span className="h-1.5 w-1.5 rounded-full bg-white animate-pulse" />
+                  Активна
+                </span>
+              </div>
+              <div className="px-4 py-3 flex-1 flex flex-col justify-center gap-2">
+                <div className="flex items-center gap-6">
+                  <div>
+                    <p className="text-xs text-white/40 mb-0.5">Тариф</p>
+                    <p className="font-raleway font-black text-lg text-white">{PLAN_LABELS[subscription.plan] ?? subscription.plan}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-white/40 mb-0.5">Стоимость</p>
+                    <p className="font-semibold text-white text-sm">{formatPrice(subscription.price)}<span className="text-white/40 text-xs font-normal">/мес</span></p>
+                  </div>
+                </div>
+                <p className="text-xs text-brand-green-light font-semibold">✓ Скидка 10% на все услуги активна</p>
+              </div>
+            </DarkCard>
+          ) : (
+            <DarkCard className="h-full border-dashed border-brand-green/20 bg-brand-green/[0.04] flex flex-col items-center justify-center p-5 text-center">
+              <div className="h-12 w-12 rounded-2xl bg-brand-green/10 flex items-center justify-center mb-3">
+                <svg className="h-6 w-6 text-brand-green" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                </svg>
+              </div>
+              <p className="font-raleway font-bold text-white/80 mb-1">Подключите подписку</p>
+              <p className="text-white/40 text-sm mb-4">Вывоз мусора + скидка 10% на все услуги</p>
+              <Button onClick={() => setSubscriptionModalOpen(true)}>Подключить</Button>
+            </DarkCard>
+          )}
+        </div>
+      </main>
+
+      {/* ═══════════════════════════════════════════════════════════
+          DESKTOP LAYOUT — scrollable, full content
+          ═══════════════════════════════════════════════════════════ */}
+      <main className="hidden lg:block">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 py-6 lg:py-8 space-y-4">
 
           {/* ── 1. Greeting ─────────────────────────────────────── */}

@@ -15,8 +15,8 @@ export default async function AddressesPage() {
   });
 
   return (
-    <main className="flex-1 overflow-y-auto">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8">
+    <main className="flex-1 overflow-y-auto overscroll-contain">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8" style={{ paddingBottom: "calc(72px + env(safe-area-inset-bottom) + 2rem)" }}>
         <div className="flex items-center justify-between mb-6">
           <h1 className="font-raleway font-black text-2xl text-gray-900">Мои адреса</h1>
           <button className="inline-flex items-center gap-1.5 bg-brand-green hover:bg-brand-green/90 text-white font-semibold px-4 py-2 rounded-xl text-sm transition-all active:scale-95">
