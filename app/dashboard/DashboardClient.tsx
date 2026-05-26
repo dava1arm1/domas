@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import type { User, Address, Order, Subscription, Review } from "@prisma/client";
 import { Badge } from "@/components/ui/Badge";
@@ -60,6 +61,7 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 }
 
 export function DashboardClient({ user, orders, subscription, coinBalance = 0 }: Props) {
+  const router = useRouter();
   const [reviewOrder, setReviewOrder]     = useState<OrderWithRelations | null>(null);
   const [reviewRating, setReviewRating]   = useState(5);
   const [reviewComment, setReviewComment] = useState("");
@@ -707,7 +709,7 @@ export function DashboardClient({ user, orders, subscription, coinBalance = 0 }:
       <SubscriptionModal
         isOpen={subscriptionModalOpen}
         onClose={() => setSubscriptionModalOpen(false)}
-        onSuccess={() => { setSubscriptionModalOpen(false); setTimeout(() => window.location.reload(), 300); }}
+        onSuccess={() => { setSubscriptionModalOpen(false); router.refresh(); }}
       />
 
       {/* ── Order form modal ─────────────────────────────────────── */}
@@ -715,7 +717,7 @@ export function DashboardClient({ user, orders, subscription, coinBalance = 0 }:
         <OrderFormModal
           onClose={() => {
             setOrderModalOpen(false);
-            setTimeout(() => window.location.reload(), 500);
+            router.refresh();
           }}
           preselectedService={orderModalServiceId}
         />

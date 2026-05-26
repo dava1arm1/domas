@@ -41,8 +41,6 @@ export function SubscriptionModal({ isOpen, onClose, onSuccess }: Props) {
   const [landmark, setLandmark] = useState("");
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [visible, setVisible] = useState(true);
-
   useEffect(() => {
     if (isOpen) {
       setStep(1);
@@ -51,7 +49,6 @@ export function SubscriptionModal({ isOpen, onClose, onSuccess }: Props) {
       setCity("");
       setLandmark("");
       setErrors({});
-      setVisible(true);
     }
   }, [isOpen]);
 
@@ -62,13 +59,8 @@ export function SubscriptionModal({ isOpen, onClose, onSuccess }: Props) {
     }
   }, [isOpen]);
 
-  function navigate(to: 1 | 2) {
-    setVisible(false);
-    setTimeout(() => { setStep(to); setVisible(true); }, 160);
-  }
-
   function handleNext() {
-    if (step === 1) { navigate(2); return; }
+    if (step === 1) { setStep(2); return; }
     handleSubmit();
   }
 
@@ -147,7 +139,7 @@ export function SubscriptionModal({ isOpen, onClose, onSuccess }: Props) {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-1.5">
               {step === 2 && (
-                <button onClick={() => navigate(1)} className="p-1.5 -ml-1 rounded-xl text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors">
+                <button onClick={() => setStep(1)} className="p-1.5 -ml-1 rounded-xl text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors">
                   <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                   </svg>
@@ -167,8 +159,7 @@ export function SubscriptionModal({ isOpen, onClose, onSuccess }: Props) {
 
         {/* Content */}
         <div
-          className="flex-1 overflow-y-auto px-5 py-5 transition-opacity duration-150"
-          style={{ opacity: visible ? 1 : 0 }}
+          className="flex-1 overflow-y-auto px-5 py-5"
         >
           {step === 1 && (
             <div className="space-y-3">

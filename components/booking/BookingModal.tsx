@@ -767,7 +767,6 @@ export function BookingModal({
   user, addresses, subscription, onSuccess,
 }: Props) {
   const [step, setStep] = useState<Step>(initialServiceId ? 2 : 1);
-  const [visible, setVisible] = useState(true);
   const [orderNumber, setOrderNumber] = useState("");
 
   const [serviceId, setServiceId] = useState(initialServiceId ?? "");
@@ -799,7 +798,6 @@ export function BookingModal({
     if (isOpen) {
       const initStep: Step = initialServiceId ? 2 : 1;
       setStep(initStep);
-      setVisible(true);
       setServiceId(initialServiceId ?? "");
       setAddressId(addresses.find(a => a.isDefault)?.id ?? addresses[0]?.id ?? null);
       setUseNewAddress(addresses.length === 0);
@@ -831,14 +829,6 @@ export function BookingModal({
   const service = SERVICES.find(s => s.id === serviceId);
   const selectedAddress = addresses.find(a => a.id === addressId);
 
-  function navigate(toStep: Step) {
-    setVisible(false);
-    setTimeout(() => {
-      setStep(toStep);
-      setVisible(true);
-    }, 180);
-  }
-
   function validate(s: Step): boolean {
     const errs: Record<string, string> = {};
     if (s === 1 && !serviceId) errs.serviceId = "Выберите услугу";
@@ -863,12 +853,12 @@ export function BookingModal({
     if (typeof step !== "number") return;
     if (!validate(step)) return;
     if (step === 4) { await handleSubmit(); return; }
-    navigate((step + 1) as Step);
+    setStep((step + 1) as Step);
   }
 
   function handleBack() {
     if (typeof step !== "number" || step <= 1) return;
-    navigate((step - 1) as Step);
+    setStep((step - 1) as Step);
   }
 
   async function handleSubmit() {
@@ -916,7 +906,7 @@ export function BookingModal({
 
       setOrderNumber(data.data?.orderNumber ?? `DOMAS-${Math.floor(1000 + Math.random() * 9000)}`);
       setShowConfetti(true);
-      navigate("success");
+      setStep("success");
       setTimeout(() => setShowConfetti(false), 2800);
       onSuccess?.();
     } catch (e) {
@@ -1058,8 +1048,7 @@ export function BookingModal({
 
           {/* ── Content ── */}
           <div
-            className="flex-1 overflow-y-auto overscroll-contain px-5 py-5 transition-opacity duration-150"
-            style={{ opacity: visible ? 1 : 0 }}
+            className="flex-1 overflow-y-auto overscroll-contain px-5 py-5"
           >
             {step === 1 && (
               <Step1
