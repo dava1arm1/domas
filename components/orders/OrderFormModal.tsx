@@ -140,21 +140,18 @@ export function OrderFormModal({ onClose, preselectedService }: OrderFormModalPr
       });
   }, []);
 
-  // Close on Escape + lock body scroll on iOS
+  // Close on Escape + lock the dashboard scroll container on iOS
   useEffect(() => {
     const handler = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
     document.addEventListener("keydown", handler);
 
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    document.body.style.position = "fixed";
-    document.body.style.width = "100%";
+    // Block the dashboard scroll container so iOS can't scroll behind the modal
+    const scrollEl = document.getElementById("dash-scroll");
+    if (scrollEl) scrollEl.style.overflow = "hidden";
 
     return () => {
       document.removeEventListener("keydown", handler);
-      document.body.style.overflow = prev;
-      document.body.style.position = "";
-      document.body.style.width = "";
+      if (scrollEl) scrollEl.style.overflow = "";
     };
   }, [onClose]);
 
@@ -290,7 +287,9 @@ export function OrderFormModal({ onClose, preselectedService }: OrderFormModalPr
         </div>
 
         {/* Body */}
-        <div className="flex-1 overflow-y-auto px-6 py-5 min-h-0">
+        <div className="flex-1 overflow-y-auto overscroll-contain px-6 py-5 min-h-0"
+          style={{ WebkitOverflowScrolling: "touch" } as React.CSSProperties}
+        >
           {submitted ? (
             <SuccessView orderNumber={orderNumber} onClose={onClose} />
           ) : step === 1 ? (

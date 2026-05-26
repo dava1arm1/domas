@@ -323,6 +323,7 @@ export function DashboardShell({ user, children, hasPendingReview }: Props) {
          *  and the device's safe-area-inset-bottom.                *
          */}
         <div
+          id="dash-scroll"
           className="flex-1 overflow-y-auto overscroll-contain"
           style={{ WebkitOverflowScrolling: "touch" } as React.CSSProperties}
           onScroll={handleScroll}
