@@ -53,7 +53,7 @@ function DarkCard({ children, className = "" }: { children: React.ReactNode; cla
 /* ── Section label ───────────────────────────────────────────── */
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
-    <p className="text-white/30 text-[10px] font-bold uppercase tracking-widest mb-2 px-1">
+    <p className="text-white/30 text-xs font-bold uppercase tracking-widest mb-2 px-1">
       {children}
     </p>
   );
@@ -138,11 +138,11 @@ export function DashboardClient({ user, orders, subscription, coinBalance = 0 }:
                     {/* Calendar block */}
                     <div className="flex-shrink-0 flex flex-col items-center justify-center bg-brand-green/20 rounded-xl w-14 h-14">
                       <span className="font-raleway font-black text-2xl text-brand-green-light leading-none">{day}</span>
-                      <span className="text-brand-green-light/70 text-[10px] font-semibold uppercase tracking-wide leading-none mt-0.5">{month.slice(0, 3)}</span>
+                      <span className="text-brand-green-light/70 text-[11px] font-semibold uppercase tracking-wide leading-none mt-0.5">{month.slice(0, 3)}</span>
                     </div>
                     {/* Content */}
                     <div className="flex-1 min-w-0">
-                      <p className="text-white/40 text-[10px] font-bold uppercase tracking-widest mb-0.5">Ближайший визит</p>
+                      <p className="text-white/40 text-[11px] font-bold uppercase tracking-widest mb-0.5">Ближайший визит</p>
                       <h2 className="font-raleway font-black text-lg text-white leading-tight truncate">
                         {SERVICE_LABELS[nextOrder.serviceType] ?? nextOrder.serviceType}
                       </h2>

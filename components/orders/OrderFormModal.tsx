@@ -258,14 +258,14 @@ export function OrderFormModal({ onClose, preselectedService }: OrderFormModalPr
         {/* Header */}
         <div className="flex items-center justify-between px-6 pt-5 pb-4 border-b border-white/[0.06] flex-shrink-0">
           <div>
-            <p className="text-white/30 text-[10px] font-bold uppercase tracking-widest mb-1">
+            <p className="text-white/30 text-xs font-bold uppercase tracking-widest mb-1">
               {STEP_LABELS[step]}
             </p>
             <StepIndicator current={step} />
           </div>
           <button
             onClick={onClose}
-            className="h-8 w-8 rounded-full bg-white/[0.06] flex items-center justify-center text-white/40 hover:text-white hover:bg-white/[0.12] transition-all"
+            className="h-11 w-11 rounded-full bg-white/[0.06] flex items-center justify-center text-white/40 hover:text-white hover:bg-white/[0.12] transition-all touch-manipulation"
           >
             <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -330,7 +330,7 @@ export function OrderFormModal({ onClose, preselectedService }: OrderFormModalPr
             {step > initialStep && (
               <button
                 onClick={goBack}
-                className="flex-1 py-3 rounded-xl border border-white/[0.10] text-white/50 hover:text-white hover:border-white/20 text-sm font-semibold transition-all"
+                className="flex-1 py-4 rounded-xl border border-white/[0.10] text-white/50 hover:text-white hover:border-white/20 text-sm font-semibold transition-all touch-manipulation"
               >
                 Назад
               </button>
@@ -339,7 +339,7 @@ export function OrderFormModal({ onClose, preselectedService }: OrderFormModalPr
               <button
                 onClick={goNext}
                 disabled={!canGoNext()}
-                className="flex-1 py-3 rounded-xl bg-brand-green hover:bg-brand-green/90 text-white text-sm font-bold transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+                className="flex-1 py-4 rounded-xl bg-brand-green hover:bg-brand-green/90 text-white text-sm font-bold transition-all disabled:opacity-30 disabled:cursor-not-allowed touch-manipulation"
               >
                 Далее
               </button>
@@ -347,7 +347,7 @@ export function OrderFormModal({ onClose, preselectedService }: OrderFormModalPr
               <button
                 onClick={handleSubmit}
                 disabled={submitting}
-                className="flex-1 py-3 rounded-xl bg-brand-green hover:bg-brand-green/90 text-white text-sm font-bold transition-all disabled:opacity-60 flex items-center justify-center gap-2"
+                className="flex-1 py-4 rounded-xl bg-brand-green hover:bg-brand-green/90 text-white text-sm font-bold transition-all disabled:opacity-60 flex items-center justify-center gap-2 touch-manipulation"
               >
                 {submitting ? (
                   <>
@@ -445,7 +445,7 @@ function StepAddress({
             <p className="text-white/80 font-semibold text-sm">{addr.label}</p>
             <p className="text-white/40 text-xs mt-0.5 truncate">{addr.address}</p>
             {addr.isDefault && (
-              <span className="text-[10px] text-brand-green font-semibold">По умолчанию</span>
+              <span className="text-xs text-brand-green font-semibold">По умолчанию</span>
             )}
           </div>
           {selectedId === addr.id && (
@@ -539,7 +539,7 @@ function StepDateTime({
           <button
             onClick={onPrevMonth}
             disabled={!canPrev}
-            className="h-8 w-8 rounded-lg bg-white/[0.06] flex items-center justify-center text-white/40 hover:text-white hover:bg-white/[0.10] transition-all disabled:opacity-20 disabled:cursor-not-allowed"
+            className="h-10 w-10 rounded-lg bg-white/[0.06] flex items-center justify-center text-white/40 hover:text-white hover:bg-white/[0.10] transition-all disabled:opacity-20 disabled:cursor-not-allowed touch-manipulation"
           >
             <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
@@ -550,7 +550,7 @@ function StepDateTime({
           </span>
           <button
             onClick={onNextMonth}
-            className="h-8 w-8 rounded-lg bg-white/[0.06] flex items-center justify-center text-white/40 hover:text-white hover:bg-white/[0.10] transition-all"
+            className="h-10 w-10 rounded-lg bg-white/[0.06] flex items-center justify-center text-white/40 hover:text-white hover:bg-white/[0.10] transition-all touch-manipulation"
           >
             <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
@@ -560,7 +560,7 @@ function StepDateTime({
 
         <div className="grid grid-cols-7 mb-2">
           {DAYS_RU.map((d) => (
-            <div key={d} className="text-center text-white/20 text-[10px] font-bold uppercase py-1">{d}</div>
+            <div key={d} className="text-center text-white/20 text-[11px] font-bold uppercase py-1">{d}</div>
           ))}
         </div>
 
@@ -593,7 +593,7 @@ function StepDateTime({
       {/* Time slots */}
       {selectedDate && (
         <div>
-          <p className="text-white/30 text-[10px] font-bold uppercase tracking-widest mb-3">
+          <p className="text-white/30 text-xs font-bold uppercase tracking-widest mb-3">
             Выберите время
           </p>
           <div className="grid grid-cols-3 gap-2">
@@ -601,7 +601,7 @@ function StepDateTime({
               <button
                 key={slot}
                 onClick={() => onSelectSlot(slot)}
-                className={`py-2.5 rounded-xl text-xs font-semibold border transition-all duration-150 ${
+                className={`py-3 rounded-xl text-xs font-semibold border transition-all duration-150 touch-manipulation ${
                   timeSlot === slot
                     ? "bg-brand-green border-brand-green text-white"
                     : "border-white/[0.10] text-white/50 hover:border-white/30 hover:text-white bg-white/[0.03]"
@@ -632,7 +632,7 @@ function StepDetails({
   return (
     <div className="space-y-5">
       <div>
-        <p className="text-white/30 text-[10px] font-bold uppercase tracking-widest mb-3">
+        <p className="text-white/30 text-xs font-bold uppercase tracking-widest mb-3">
           Комментарий
         </p>
         <textarea
@@ -640,14 +640,13 @@ function StepDetails({
           onChange={(e) => onCommentChange(e.target.value)}
           placeholder="Опишите особенности объекта, пожелания или вопросы..."
           rows={4}
-          className="w-full bg-white/[0.04] border border-white/[0.10] rounded-xl px-4 py-3 text-white placeholder-white/20 text-sm focus:outline-none focus:border-brand-green/50 resize-none transition-colors"
+          className="w-full bg-white/[0.04] border border-white/[0.10] rounded-xl px-4 py-3 text-white placeholder-white/20 text-base focus:outline-none focus:border-brand-green/50 resize-none transition-colors"
         />
       </div>
 
       <div>
-        <p className="text-white/30 text-[10px] font-bold uppercase tracking-widest mb-3">
+        <p className="text-white/30 text-xs font-bold uppercase tracking-widest mb-3">
           Фотографии объекта
-          <span className="text-white/20 normal-case font-normal text-xs ml-1">(до 3 шт.)</span>
         </p>
 
         <div className="flex gap-3 flex-wrap">
@@ -657,7 +656,7 @@ function StepDetails({
               <img src={src} alt="" className="h-full w-full object-cover" />
               <button
                 onClick={() => onRemovePhoto(i)}
-                className="absolute top-1 right-1 h-5 w-5 rounded-full bg-black/70 flex items-center justify-center"
+                className="absolute top-1 right-1 h-6 w-6 rounded-full bg-black/70 flex items-center justify-center touch-manipulation"
               >
                 <svg className="h-3 w-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -668,12 +667,12 @@ function StepDetails({
 
           <button
             onClick={() => fileRef.current?.click()}
-            className="h-20 w-20 rounded-xl border border-dashed border-white/20 flex flex-col items-center justify-center gap-1 hover:border-white/40 transition-colors"
+            className="h-20 w-20 rounded-xl border border-dashed border-white/20 flex flex-col items-center justify-center gap-1 hover:border-white/40 transition-colors touch-manipulation"
           >
             <svg className="h-5 w-5 text-white/30" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
             </svg>
-            <span className="text-white/20 text-[10px]">Фото</span>
+            <span className="text-white/20 text-xs">Фото</span>
           </button>
         </div>
 
@@ -800,7 +799,7 @@ function Input({
 }) {
   return (
     <div>
-      <label className="block text-white/30 text-[10px] font-bold uppercase tracking-widest mb-1.5">
+      <label className="block text-white/30 text-xs font-bold uppercase tracking-widest mb-1.5">
         {label}
       </label>
       <input
@@ -808,7 +807,7 @@ function Input({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
-        className="w-full bg-white/[0.04] border border-white/[0.10] rounded-xl px-4 py-2.5 text-white placeholder-white/20 text-sm focus:outline-none focus:border-brand-green/50 transition-colors"
+        className="w-full bg-white/[0.04] border border-white/[0.10] rounded-xl px-4 py-3 text-white placeholder-white/20 text-base focus:outline-none focus:border-brand-green/50 transition-colors"
       />
     </div>
   );

@@ -94,7 +94,7 @@ export function Header() {
 
             {/* Бургер — только на мобильном */}
             <button
-              className="md:hidden text-white p-2 -mr-2"
+              className="md:hidden text-white p-3 -mr-3 touch-manipulation"
               onClick={() => setIsMenuOpen(true)}
               aria-label="Открыть меню"
             >
