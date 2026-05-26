@@ -17,8 +17,8 @@ export default async function SettingsPage() {
   if (!user) redirect("/login");
 
   return (
-    <main className="flex-1 overflow-y-auto overscroll-contain">
-      <div className="max-w-2xl mx-auto px-4 sm:px-6 py-8" style={{ paddingBottom: "calc(72px + env(safe-area-inset-bottom) + 2rem)" }}>
+    <main className="flex-1 min-h-0 overflow-y-auto overscroll-contain" style={{ WebkitOverflowScrolling: "touch" } as React.CSSProperties}>
+      <div className="max-w-2xl mx-auto px-4 sm:px-6 pt-4 sm:pt-8 pb-8" style={{ paddingBottom: "calc(72px + env(safe-area-inset-bottom) + 1rem)" }}>
         <h1 className="font-raleway font-black text-2xl text-gray-900 mb-6">Настройки</h1>
 
         <div className="bg-white rounded-2xl border border-gray-100 divide-y divide-gray-50">

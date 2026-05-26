@@ -148,7 +148,7 @@ export function ReferralPageClient({ referralCode, referrals, referralEarned }: 
   const completedReferrals = referrals.filter((r) => r.orders.length > 0).length;
 
   return (
-    <main className="flex-1 overflow-y-auto overscroll-contain">
+    <main className="flex-1 min-h-0 overflow-y-auto overscroll-contain">
       <div className="max-w-2xl mx-auto px-4 sm:px-6 py-8 space-y-5" style={{ paddingBottom: "calc(72px + env(safe-area-inset-bottom) + 2rem)" }}>
 
         {/* ── PAGE TITLE ── */}

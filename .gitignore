@@ -37,3 +37,4 @@ next-env.d.ts
 
 # Prisma (generated client — пересоздаётся при деплое)
 /node_modules/.prisma
+.claude/

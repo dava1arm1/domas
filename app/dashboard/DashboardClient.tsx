@@ -175,8 +175,8 @@ export function DashboardClient({ user, orders, subscription, coinBalance = 0 }:
               <p className="font-raleway font-black text-base leading-tight">Заказать услугу</p>
               <p className="text-white/70 text-xs">Менеджер свяжется за 5 минут</p>
             </div>
-            <div className="h-9 w-9 rounded-lg bg-white/15 flex items-center justify-center flex-shrink-0">
-              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <div className="h-9 w-9 rounded-lg bg-white/15 flex items-center justify-center flex-shrink-0 leading-none">
+              <svg className="h-5 w-5 block flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
               </svg>
             </div>

@@ -28,7 +28,7 @@ const items = [
 
 export default function SupportPage() {
   return (
-    <main className="flex-1 overflow-y-auto overscroll-contain">
+    <main className="flex-1 min-h-0 overflow-y-auto overscroll-contain">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8" style={{ paddingBottom: "calc(72px + env(safe-area-inset-bottom) + 2rem)" }}>
         <h1 className="font-raleway font-black text-2xl text-gray-900 mb-2">Поддержка</h1>
         <p className="text-gray-400 text-sm mb-8">Выберите удобный способ связи — мы всегда на связи</p>

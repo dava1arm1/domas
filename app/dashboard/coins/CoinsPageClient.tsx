@@ -117,8 +117,8 @@ export function CoinsPageClient({
   ];
 
   return (
-    <main className="flex-1 overflow-y-auto overscroll-contain" style={{ WebkitOverflowScrolling: "touch" } as React.CSSProperties}>
-      <div className="max-w-2xl mx-auto px-4 sm:px-6 py-8 space-y-5" style={{ paddingBottom: "calc(72px + env(safe-area-inset-bottom) + 2rem)" }}>
+    <main className="flex-1 min-h-0 overflow-y-auto overscroll-contain" style={{ WebkitOverflowScrolling: "touch" } as React.CSSProperties}>
+      <div className="max-w-2xl mx-auto px-4 sm:px-6 pt-4 sm:pt-8 pb-8 space-y-5" style={{ paddingBottom: "calc(72px + env(safe-area-inset-bottom) + 1rem)" }}>
 
         <h1 className="font-raleway font-black text-2xl text-gray-900">ДомоКоины</h1>
 

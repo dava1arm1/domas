@@ -140,7 +140,7 @@ export function DashboardShell({ user, children, hasPendingReview }: Props) {
      * Mobile: flex-col (top bar → content → bottom nav handled via fixed positioning).
      * Desktop: flex-row (sidebar | content area).
      */
-    <div className="h-[100dvh] flex overflow-hidden bg-brand-dark">
+    <div className="fixed inset-0 flex overflow-hidden bg-brand-dark">
 
       {/* ════════════════════════════════════════════════════════
           DESKTOP SIDEBAR — hidden below lg breakpoint
@@ -324,7 +324,7 @@ export function DashboardShell({ user, children, hasPendingReview }: Props) {
          */}
         <div
           id="dash-scroll"
-          className="flex-1 flex flex-col overflow-hidden lg:overflow-y-auto overscroll-contain"
+          className="flex-1 min-h-0 flex flex-col overflow-hidden lg:overflow-y-auto overscroll-contain"
           style={{ WebkitOverflowScrolling: "touch" } as React.CSSProperties}
           onScroll={handleScroll}
         >
