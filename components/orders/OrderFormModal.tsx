@@ -260,14 +260,19 @@ export function OrderFormModal({ onClose, preselectedService }: OrderFormModalPr
   // ── Render ──────────────────────────────────────────────────
 
   return (
-    <div className="fixed inset-0 z-[70] flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/70" onClick={onClose}>
+    <div className="fixed inset-0 z-[70] flex sm:items-center sm:justify-center sm:p-4">
+      {/* Backdrop — только на десктопе */}
+      <div className="hidden sm:block absolute inset-0 bg-black/70" onClick={onClose} />
+
+      {/* Модал — полный экран на мобиле, центр на десктопе */}
       <div
-        className="relative w-full sm:max-w-xl bg-[#0F1A16] border border-white/[0.08] rounded-t-3xl sm:rounded-2xl shadow-2xl flex flex-col"
-        style={{ maxHeight: "92dvh" }}
+        className="relative w-full h-full sm:h-auto sm:max-w-xl bg-[#0F1A16] sm:border border-white/[0.08] sm:rounded-2xl shadow-2xl flex flex-col sm:max-h-[90dvh]"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-6 pt-5 pb-4 border-b border-white/[0.06] flex-shrink-0">
+        <div className="flex items-center justify-between px-6 pb-4 border-b border-white/[0.06] flex-shrink-0"
+          style={{ paddingTop: "max(1.25rem, env(safe-area-inset-top))" }}
+        >
           <div>
             <p className="text-white/30 text-xs font-bold uppercase tracking-widest mb-1">
               {STEP_LABELS[step]}
