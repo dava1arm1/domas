@@ -11,6 +11,7 @@ import { ReviewsSection } from "@/components/sections/ReviewsSection";
 import { DashboardPreviewSection } from "@/components/sections/DashboardPreviewSection";
 import { FaqSection } from "@/components/sections/FaqSection";
 import { DomoCoinSection } from "@/components/sections/DomoCoinSection";
+import { CtaBannerSection } from "@/components/sections/CtaBannerSection";
 import { getSettings } from "@/lib/settings";
 
 export default async function HomePage() {
@@ -44,6 +45,7 @@ export default async function HomePage() {
         <ReviewsSection />
         <DashboardPreviewSection />
         <FaqSection />
+        <CtaBannerSection />
       </main>
       <Footer />
     </>

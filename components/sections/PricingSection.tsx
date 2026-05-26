@@ -5,6 +5,7 @@ import Link from "next/link";
 import { MAIN_SUBSCRIPTION, ADDON_SUBSCRIPTIONS } from "@/constants/pricing";
 import { ADDON_ICONS } from "@/constants/icons";
 import { formatPrice } from "@/lib/utils";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 function ComingSoonModal({ onClose }: { onClose: () => void }) {
   return (
@@ -37,14 +38,15 @@ function ComingSoonModal({ onClose }: { onClose: () => void }) {
 export function PricingSection() {
   const [isAnnual, setIsAnnual] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  useScrollReveal();
 
   return (
-    <section id="pricing" className="section-padding bg-surface-secondary">
+    <section id="pricing" className="section-padding" style={{ backgroundColor: "#EAF0E5" }}>
       {showModal && <ComingSoonModal onClose={() => setShowModal(false)} />}
       <div className="container-custom">
         {/* Заголовок */}
-        <div className="text-center mb-12">
-          <span className="inline-block text-brand-green font-semibold text-sm uppercase tracking-wider mb-3">
+        <div className="reveal text-center mb-12">
+          <span className="inline-block text-brand-green font-semibold text-sm uppercase tracking-widest mb-3">
             Подписки
           </span>
           <h2 className="font-raleway font-black text-3xl md:text-4xl text-gray-900 mb-6">

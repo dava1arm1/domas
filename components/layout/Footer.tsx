@@ -96,12 +96,13 @@ export function Footer() {
 
         {/* Копирайт */}
         <div className="mt-16 pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-white/40 text-sm">
+          <p className="text-white/30 text-sm">
             © {currentYear} Domas. Все права защищены.
           </p>
-          <p className="text-white/40 text-sm">
-            ИП Иванов И.И. · ОГРНИП 0000000000000
-          </p>
+          <div className="flex items-center gap-2">
+            <span className="h-1.5 w-1.5 rounded-full bg-brand-green animate-pulse" />
+            <p className="text-white/30 text-sm">Работаем ежедневно, 80 км от МКАД</p>
+          </div>
         </div>
       </div>
     </footer>

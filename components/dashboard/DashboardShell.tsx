@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { signOut } from "next-auth/react";
 import { getInitials } from "@/lib/utils";
+import { NotificationBell } from "@/components/notifications/NotificationBell";
 
 // ─────────────────────────────────────────────────────────────────
 // Types
@@ -139,7 +140,7 @@ export function DashboardShell({ user, children, hasPendingReview }: Props) {
      * Mobile: flex-col (top bar → content → bottom nav handled via fixed positioning).
      * Desktop: flex-row (sidebar | content area).
      */
-    <div className="h-[100dvh] flex overflow-hidden bg-[#f8f8f6]">
+    <div className="h-[100dvh] flex overflow-hidden bg-brand-dark">
 
       {/* ════════════════════════════════════════════════════════
           DESKTOP SIDEBAR — hidden below lg breakpoint
@@ -302,20 +303,7 @@ export function DashboardShell({ user, children, hasPendingReview }: Props) {
 
           {/* Right: notification bell + avatar (desktop) */}
           <div className="flex items-center gap-1">
-            <button
-              className="relative p-2 rounded-xl text-white/50 hover:text-white hover:bg-white/10 transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5DCAA5]"
-              aria-label="Уведомления"
-            >
-              <svg className="h-[22px] w-[22px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.75}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-              </svg>
-              {hasPendingReview && (
-                <span
-                  className="absolute top-[7px] right-[7px] h-2 w-2 bg-brand-green-light rounded-full ring-2 ring-brand-dark"
-                  aria-label="Есть непрочитанные уведомления"
-                />
-              )}
-            </button>
+            <NotificationBell />
 
             {/* Desktop only: avatar → settings */}
             <Link
@@ -355,7 +343,7 @@ export function DashboardShell({ user, children, hasPendingReview }: Props) {
           MOBILE BOTTOM NAVIGATION — fixed, hidden on desktop
           ════════════════════════════════════════════════════════ */}
       <nav
-        className="lg:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-gray-100 z-50 flex"
+        className="lg:hidden fixed bottom-0 left-0 right-0 bg-[#0A0F0D]/95 backdrop-blur-md border-t border-white/[0.07] z-50 flex"
         style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
         aria-label="Нижняя навигация"
       >
@@ -373,15 +361,15 @@ export function DashboardShell({ user, children, hasPendingReview }: Props) {
               className={`
                 flex-1 flex flex-col items-center justify-center gap-[3px]
                 min-h-[56px] py-2 transition-colors duration-150
-                focus:outline-none focus-visible:bg-gray-50
-                ${active ? "text-[#1D9E75]" : "text-gray-400"}
+                focus:outline-none focus-visible:bg-white/5
+                ${active ? "text-[#1D9E75]" : "text-white/30"}
               `}
             >
               {/* Icon scales up slightly on active for haptic-ready feel */}
               <span className={`transition-transform duration-150 ${active ? "scale-110" : "scale-100"}`}>
                 {item.icon}
               </span>
-              <span className={`text-[10px] font-semibold leading-none ${active ? "text-[#1D9E75]" : "text-gray-400"}`}>
+              <span className={`text-[10px] font-semibold leading-none ${active ? "text-[#1D9E75]" : "text-white/30"}`}>
                 {item.label}
               </span>
 

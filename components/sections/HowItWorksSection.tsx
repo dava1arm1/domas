@@ -1,23 +1,22 @@
-import { ClipboardIcon, PhoneIcon, CheckCircleIcon } from "@/components/ui/icons";
+"use client";
+
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const STEPS = [
   {
     number: "01",
-    icon: <ClipboardIcon size={36} />,
     title: "Выберите тариф или услугу",
     description:
       "Зарегистрируйтесь за 2 минуты, выберите подходящий тариф или разовую услугу и укажите адрес.",
   },
   {
     number: "02",
-    icon: <PhoneIcon size={36} />,
     title: "Мы свяжемся удобным способом",
     description:
       "Менеджер свяжется в течение 5 минут, уточнит детали и согласует удобное расписание визитов.",
   },
   {
     number: "03",
-    icon: <CheckCircleIcon size={36} />,
     title: "Наслаждайтесь результатом",
     description:
       "После каждой услуги вы оцениваете качество — это помогает нам становиться лучше.",
@@ -25,38 +24,56 @@ const STEPS = [
 ] as const;
 
 export function HowItWorksSection() {
+  useScrollReveal();
+
   return (
-    <section className="section-padding bg-white">
+    <section className="section-padding bg-[#0A0A0A] overflow-hidden">
       <div className="container-custom">
-        <div className="text-center mb-14">
-          <span className="inline-block text-brand-green font-semibold text-sm uppercase tracking-wider mb-3">
+
+        {/* Header */}
+        <div className="text-center mb-16 reveal">
+          <span className="inline-block text-brand-green font-semibold text-sm uppercase tracking-widest mb-4">
             Как это работает
           </span>
-          <h2 className="font-raleway font-black text-3xl md:text-4xl text-gray-900">
+          <h2 className="font-raleway font-black text-3xl md:text-5xl text-white">
             Три шага до комфорта
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
-          {/* Линия-соединитель (только desktop) */}
-          <div className="hidden md:block absolute top-10 left-1/4 right-1/4 h-0.5 bg-gradient-to-r from-brand-green to-brand-green-light" />
+        {/* Steps */}
+        <div className="relative grid grid-cols-1 md:grid-cols-3 gap-0">
+
+          {/* Dashed connector (desktop only) */}
+          <div className="hidden md:block absolute top-10 left-[calc(16.66%+1rem)] right-[calc(16.66%+1rem)] h-px">
+            <div className="w-full h-full border-t-2 border-dashed border-white/10" />
+          </div>
 
           {STEPS.map((step, index) => (
-            <div key={step.number} className="relative flex flex-col items-center text-center">
-              {/* Иконка с номером */}
+            <div
+              key={step.number}
+              className={`reveal reveal-delay-${index + 1} flex flex-col items-center text-center px-6 md:px-8 pb-12 md:pb-0 relative`}
+            >
+              {/* Vertical connector (mobile only) */}
+              {index < STEPS.length - 1 && (
+                <div className="md:hidden absolute bottom-0 left-1/2 -translate-x-1/2 w-px h-12 border-l-2 border-dashed border-white/10" />
+              )}
+
+              {/* Large step number */}
               <div className="relative mb-6">
-                <div className="flex items-center justify-center h-20 w-20 rounded-2xl bg-brand-green-pale">
-                  {step.icon}
-                </div>
-                <span className="absolute -top-2 -right-2 bg-brand-green text-white text-xs font-bold rounded-full h-6 w-6 flex items-center justify-center">
-                  {index + 1}
+                <span className="font-raleway font-black text-[80px] md:text-[96px] leading-none text-white/[0.04] select-none absolute -top-6 left-1/2 -translate-x-1/2 whitespace-nowrap">
+                  {step.number}
                 </span>
+                <div className="relative z-10 h-20 w-20 rounded-2xl bg-white/[0.05] border border-white/10 flex items-center justify-center">
+                  <span className="font-raleway font-black text-2xl text-brand-green">
+                    {step.number}
+                  </span>
+                </div>
               </div>
 
-              <h3 className="font-raleway font-bold text-xl text-gray-900 mb-3">
+              <h3 className="font-raleway font-bold text-xl text-white mb-3 leading-snug">
                 {step.title}
               </h3>
-              <p className="text-gray-500 leading-relaxed max-w-xs">
+              <p className="text-white/40 text-sm leading-relaxed max-w-xs">
                 {step.description}
               </p>
             </div>

@@ -77,10 +77,14 @@ export function pluralize(
 // Цвет бейджа для статуса заказа
 export function getOrderStatusColor(status: string): string {
   const colors: Record<string, string> = {
-    NEW: "bg-blue-100 text-blue-700",
-    IN_PROGRESS: "bg-yellow-100 text-yellow-700",
-    DONE: "bg-green-100 text-green-700",
-    CANCELLED: "bg-red-100 text-red-700",
+    PENDING:     "bg-amber-50 text-amber-700 border border-amber-200",
+    ACCEPTED:    "bg-blue-50 text-blue-700 border border-blue-200",
+    IN_PROGRESS: "bg-green-50 text-green-700 border border-green-200",
+    COMPLETED:   "bg-gray-100 text-gray-600 border border-gray-200",
+    CANCELLED:   "bg-red-50 text-red-700 border border-red-200",
+    // Legacy
+    NEW:  "bg-blue-50 text-blue-700 border border-blue-200",
+    DONE: "bg-gray-100 text-gray-600 border border-gray-200",
   };
   return colors[status] ?? "bg-gray-100 text-gray-700";
 }
@@ -88,12 +92,35 @@ export function getOrderStatusColor(status: string): string {
 // Метка статуса заказа
 export function getOrderStatusLabel(status: string): string {
   const labels: Record<string, string> = {
-    NEW: "Новый",
-    IN_PROGRESS: "В работе",
+    PENDING:     "В обработке",
+    ACCEPTED:    "Заказ принят",
+    IN_PROGRESS: "Выполняется",
+    COMPLETED:   "Выполнен",
+    CANCELLED:   "Отменён",
+    // Legacy
+    NEW:  "В обработке",
     DONE: "Выполнен",
-    CANCELLED: "Отменён",
   };
   return labels[status] ?? status;
+}
+
+// Dot color for animated status indicator
+export function getOrderStatusDot(status: string): string {
+  const dots: Record<string, string> = {
+    PENDING:     "bg-amber-400",
+    ACCEPTED:    "bg-blue-500",
+    IN_PROGRESS: "bg-brand-green",
+    COMPLETED:   "bg-gray-400",
+    CANCELLED:   "bg-red-500",
+    NEW:         "bg-amber-400",
+    DONE:        "bg-gray-400",
+  };
+  return dots[status] ?? "bg-gray-400";
+}
+
+// Whether a status should show a pulsing dot
+export function isActiveStatus(status: string): boolean {
+  return status === "PENDING" || status === "IN_PROGRESS" || status === "NEW";
 }
 
 // Цвет бейджа для статуса подписки

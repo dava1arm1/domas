@@ -92,16 +92,33 @@ export async function POST(req: NextRequest) {
         addressId,
         comment: body.specialRequests ?? body.comment ?? null,
         price: 0,
-        status: "NEW",
+        status: "PENDING",
         timeSlot: body.timeSlot ?? null,
         isRecurring: body.isRecurring ?? false,
         recurringType: body.recurringType ?? null,
         specialRequests: body.specialRequests ?? null,
+        photos: body.photos ?? [],
         promoCode: body.promoCode ?? null,
         paymentMethod: body.paymentMethod ?? "cash",
         orderNumber,
       },
     });
+
+    // Notify all admins of new order
+    const adminUsers = await db.user.findMany({ where: { role: "ADMIN" }, select: { id: true } });
+    await Promise.all(
+      adminUsers.map((admin) =>
+        db.notification.create({
+          data: {
+            userId: admin.id,
+            title: `Новая заявка ${orderNumber}`,
+            message: `Услуга: ${body.serviceType}`,
+            type: "ORDER_PENDING",
+            orderId: order.id,
+          },
+        })
+      )
+    );
 
     return NextResponse.json({ data: order }, { status: 201 });
   } catch (error) {

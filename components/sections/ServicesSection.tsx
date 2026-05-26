@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { SERVICES } from "@/constants/services";
 import { SERVICE_ICONS } from "@/constants/icons";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 import type { Service } from "@/types";
 
 // ─── Модальное окно услуги ─────────────────────────────────────
@@ -144,6 +145,7 @@ interface ServicesSectionProps {
 
 export function ServicesSection({ servicesData }: ServicesSectionProps) {
   const [selectedService, setSelectedService] = useState<Service | null>(null);
+  useScrollReveal();
 
   // Мержим данные из настроек с константами (цвета/иконки берём из констант)
   const services: Service[] = (() => {
@@ -180,25 +182,25 @@ export function ServicesSection({ servicesData }: ServicesSectionProps) {
       <section id="services" className="section-padding bg-surface-secondary">
         <div className="container-custom">
           {/* Заголовок */}
-          <div className="text-center mb-14">
-            <span className="inline-block text-brand-green font-semibold text-sm uppercase tracking-wider mb-3">
+          <div className="reveal text-center mb-14">
+            <span className="inline-block text-brand-green font-semibold text-sm uppercase tracking-widest mb-3">
               Что мы делаем
             </span>
             <h2 className="font-raleway font-black text-3xl md:text-4xl text-gray-900 mb-4">
               Услуги для вашего дома
             </h2>
-            <p className="text-gray-500 text-lg max-w-xl mx-auto">
+            <p className="text-gray-500 text-base max-w-xl mx-auto">
               Нажмите на любую карточку, чтобы узнать подробнее
             </p>
           </div>
 
           {/* Карточки услуг */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map((service) => (
+            {services.map((service, index) => (
               <button
                 key={service.id}
                 onClick={() => setSelectedService(service)}
-                className="group text-left bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-green"
+                className={`reveal reveal-delay-${Math.min(index + 1, 6)} group text-left bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 transition-all duration-300 hover:shadow-xl hover:-translate-y-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-green`}
               >
                 {/* Цветная полоска */}
                 <div className="h-1.5" style={{ backgroundColor: service.color }} />
@@ -254,10 +256,10 @@ export function ServicesSection({ servicesData }: ServicesSectionProps) {
           </div>
 
           {/* CTA */}
-          <div className="text-center mt-12">
+          <div className="reveal text-center mt-14">
             <Link
               href="/register"
-              className="inline-flex items-center gap-2 bg-brand-green hover:bg-brand-green/90 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-200 hover:shadow-lg active:scale-95"
+              className="inline-flex items-center gap-2 bg-brand-green hover:bg-brand-green/90 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-brand-green/25 active:scale-95"
             >
               Подключить сервис
               <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

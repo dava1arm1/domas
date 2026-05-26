@@ -89,7 +89,7 @@ export function HeroSection({
           >
             <Link
               href="/register"
-              className="inline-flex items-center justify-center gap-2 w-full sm:w-auto bg-brand-green hover:bg-brand-green/90 text-white font-semibold px-8 py-4 rounded-xl text-base md:text-lg transition-all duration-200 hover:shadow-lg hover:shadow-brand-green/30 active:scale-95"
+              className="inline-flex items-center justify-center gap-2 w-full sm:w-auto bg-brand-green hover:bg-brand-green/90 text-white font-semibold px-8 py-4 rounded-xl text-base md:text-lg transition-all duration-200 hover:shadow-xl hover:shadow-brand-green/40 active:scale-95"
             >
               {ctaPrimary}
               <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -99,10 +99,30 @@ export function HeroSection({
 
             <a
               href="#services"
-              className="inline-flex items-center justify-center gap-2 w-full sm:w-auto border-2 border-white/50 hover:border-white text-white font-semibold px-8 py-4 rounded-xl text-base md:text-lg transition-all duration-200 hover:bg-white/10 active:scale-95"
+              className="inline-flex items-center justify-center gap-2 w-full sm:w-auto border-2 border-white/40 hover:border-white/80 text-white font-semibold px-8 py-4 rounded-xl text-base md:text-lg transition-all duration-200 hover:bg-white/10 active:scale-95 backdrop-blur-sm"
             >
               {ctaSecondary}
             </a>
+          </div>
+
+          {/* Stats bar */}
+          <div
+            className="flex flex-wrap gap-6 sm:gap-10 mt-10 md:mt-14 animate-fade-up"
+            style={{ animationDelay: "0.35s" }}
+          >
+            {([
+              { value: "80 км", label: "радиус работ" },
+              { value: "500+", label: "клиентов" },
+              { value: "5 лет", label: "на рынке" },
+              { value: "24/7", label: "поддержка" },
+            ] as const).map((stat) => (
+              <div key={stat.value} className="flex flex-col">
+                <span className="font-raleway font-black text-xl sm:text-2xl md:text-3xl text-white leading-none">
+                  {stat.value}
+                </span>
+                <span className="text-white/40 text-xs mt-1">{stat.label}</span>
+              </div>
+            ))}
           </div>
 
         </div>
