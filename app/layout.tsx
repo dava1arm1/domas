@@ -61,8 +61,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ru" className={`${raleway.variable} ${inter.variable}`}>
-      <body className="min-h-screen">
+    <html lang="ru" className={`${raleway.variable} ${inter.variable}`} style={{ backgroundColor: "#0F1A16" }}>
+      <body className="min-h-screen" style={{ backgroundColor: "#0F1A16" }}>
         <SessionProvider>{children}</SessionProvider>
       </body>
     </html>
