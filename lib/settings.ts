@@ -54,7 +54,11 @@ export const SETTING_DEFAULTS: Record<string, string> = {
 // ─── Read a single setting ─────────────────────────────────────
 export async function getSetting(key: string): Promise<string> {
   try {
-    const row = await db.setting.findUnique({ where: { key } });
+    const timeout = new Promise<never>((_, reject) =>
+      setTimeout(() => reject(new Error("db timeout")), 5000)
+    );
+    const query = db.setting.findUnique({ where: { key } });
+    const row = await Promise.race([query, timeout]);
     return row?.value ?? SETTING_DEFAULTS[key] ?? "";
   } catch {
     return SETTING_DEFAULTS[key] ?? "";
@@ -69,7 +73,11 @@ export async function getSettings(
   for (const k of keys) result[k] = SETTING_DEFAULTS[k] ?? "";
 
   try {
-    const rows = await db.setting.findMany({ where: { key: { in: keys } } });
+    const timeout = new Promise<never>((_, reject) =>
+      setTimeout(() => reject(new Error("db timeout")), 5000)
+    );
+    const query = db.setting.findMany({ where: { key: { in: keys } } });
+    const rows = await Promise.race([query, timeout]);
     for (const row of rows) result[row.key] = row.value;
   } catch {
     // fallback to defaults already set

@@ -21,9 +21,9 @@ const DEFAULT_FAQ: FaqItem[] = [
 ];
 
 const DEFAULTS: TextField = {
-  "seo.home.title": "Домас — сервис обслуживания домов",
+  "seo.home.title": "Domas — сервис обслуживания домов",
   "seo.home.description": "Вывоз мусора, клининг, уход за участком и другие услуги по подписке. 80 км от МКАД.",
-  "texts.footer": "© 2025 Домас. Все права защищены.",
+  "texts.footer": "© 2025 Domas. Все права защищены.",
   "texts.faq": JSON.stringify(DEFAULT_FAQ),
 };
 
@@ -170,7 +170,7 @@ export default function TextsPage() {
                 className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#1D9E75]/20 focus:border-[#1D9E75]"
                 value={fields["seo.home.title"]}
                 onChange={(e) => setField("seo.home.title", e.target.value)}
-                placeholder="Домас — сервис обслуживания домов"
+                placeholder="Domas — сервис обслуживания домов"
               />
               <p className="text-xs text-gray-400 mt-1">Рекомендуемая длина: до 60 символов</p>
             </div>
@@ -203,7 +203,7 @@ export default function TextsPage() {
               className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#1D9E75]/20 focus:border-[#1D9E75] resize-none"
               value={fields["texts.footer"]}
               onChange={(e) => setField("texts.footer", e.target.value)}
-              placeholder="© 2025 Домас. Все права защищены."
+              placeholder="© 2025 Domas. Все права защищены."
             />
           </div>
         </div>

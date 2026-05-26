@@ -107,34 +107,59 @@ export function DashboardClient({ user, orders, subscription, coinBalance = 0 }:
 
           {/* 2. Next visit */}
           <div className="animate-fade-in" style={{ animationDelay: "0.06s" }}>
-            {nextOrder ? (
-              <div className="bg-brand-dark rounded-2xl p-6 sm:p-8">
-                <p className="text-white/40 text-xs font-semibold uppercase tracking-widest mb-4">
-                  Ближайший визит
-                </p>
-                <div className="flex items-start justify-between gap-4 flex-wrap">
-                  <div>
-                    <h2 className="font-raleway font-black text-2xl text-white mb-1.5">
-                      {SERVICE_LABELS[nextOrder.serviceType] ?? nextOrder.serviceType}
-                    </h2>
-                    <p className="text-brand-green-light font-semibold text-lg">
-                      {formatDateTime(nextOrder.scheduledAt)}
-                    </p>
-                    {nextOrder.address && (
-                      <p className="text-white/40 text-sm mt-2 flex items-center gap-1.5">
-                        <svg className="h-3.5 w-3.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                        </svg>
-                        {nextOrder.address.address}
-                      </p>
-                    )}
+            {nextOrder ? (() => {
+              const d = new Date(nextOrder.scheduledAt);
+              const day = d.toLocaleString("ru", { day: "numeric" });
+              const month = d.toLocaleString("ru", { month: "long" });
+              const weekday = d.toLocaleString("ru", { weekday: "long" });
+              const time = d.toLocaleString("ru", { hour: "2-digit", minute: "2-digit" });
+              return (
+                <div className="relative bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+                  {/* Зелёная полоса слева */}
+                  <div className="absolute left-0 top-0 bottom-0 w-1 bg-brand-green rounded-l-2xl" />
+
+                  <div className="pl-6 pr-5 py-5 flex items-center gap-5">
+                    {/* Календарный блок */}
+                    <div className="flex-shrink-0 flex flex-col items-center justify-center bg-brand-green-pale rounded-xl w-14 h-14">
+                      <span className="font-raleway font-black text-2xl text-brand-green leading-none">{day}</span>
+                      <span className="text-brand-green/70 text-[10px] font-semibold uppercase tracking-wide leading-none mt-0.5">{month.slice(0,3)}</span>
+                    </div>
+
+                    {/* Основной контент */}
+                    <div className="flex-1 min-w-0">
+                      <p className="text-gray-400 text-xs font-medium uppercase tracking-widest mb-0.5">Ближайший визит</p>
+                      <h2 className="font-raleway font-black text-lg text-gray-900 leading-tight truncate">
+                        {SERVICE_LABELS[nextOrder.serviceType] ?? nextOrder.serviceType}
+                      </h2>
+                      <div className="flex items-center gap-3 mt-1.5 flex-wrap">
+                        <span className="flex items-center gap-1 text-brand-green font-semibold text-sm">
+                          <svg className="h-3.5 w-3.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                          {weekday}, {time}
+                        </span>
+                        {nextOrder.address && (
+                          <span className="flex items-center gap-1 text-gray-400 text-xs truncate">
+                            <svg className="h-3 w-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            {nextOrder.address.address}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Статус */}
+                    <div className="flex-shrink-0">
+                      <Badge variant={statusVariantMap[nextOrder.status] ?? "default"}>
+                        {getOrderStatusLabel(nextOrder.status)}
+                      </Badge>
+                    </div>
                   </div>
-                  <Badge variant={statusVariantMap[nextOrder.status] ?? "default"}>
-                    {getOrderStatusLabel(nextOrder.status)}
-                  </Badge>
                 </div>
-              </div>
-            ) : (
+              );
+            })() : (
               <div className="bg-white rounded-2xl border border-dashed border-gray-200 p-8 text-center">
                 <div className="h-12 w-12 rounded-2xl bg-gray-100 flex items-center justify-center mx-auto mb-3">
                   <svg className="h-6 w-6 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -143,17 +168,54 @@ export function DashboardClient({ user, orders, subscription, coinBalance = 0 }:
                 </div>
                 <p className="font-semibold text-gray-600 mb-1">Нет запланированных визитов</p>
                 <p className="text-gray-400 text-sm mb-4">Закажите первую услугу — и мы приедем</p>
-                <button
-                  onClick={() => openBooking()}
-                  className="text-brand-green font-semibold text-sm hover:underline"
-                >
+                <button onClick={() => openBooking()} className="text-brand-green font-semibold text-sm hover:underline">
                   Заказать услугу →
                 </button>
               </div>
             )}
           </div>
 
-          {/* 3. Stats row */}
+          {/* 3. Order CTA */}
+          <div className="animate-fade-in" style={{ animationDelay: "0.1s" }}>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <button
+                onClick={() => openBooking()}
+                className="flex-1 flex items-center justify-between gap-4 bg-brand-green hover:bg-brand-green/90 text-white px-6 py-5 rounded-2xl transition-all duration-200 hover:shadow-lg hover:shadow-brand-green/25 active:scale-[0.99] group"
+              >
+                <div className="text-left">
+                  <p className="font-raleway font-black text-lg">Заказать услугу</p>
+                  <p className="text-white/70 text-sm mt-0.5">Менеджер свяжется в течение 5 минут</p>
+                </div>
+                <div className="h-10 w-10 rounded-xl bg-white/15 flex items-center justify-center flex-shrink-0 group-hover:bg-white/25 transition-colors">
+                  <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                  </svg>
+                </div>
+              </button>
+
+              {orders.length > 0 && (() => {
+                const last = orders[0];
+                const svc = SERVICES.find(s => s.id === last.serviceType);
+                if (!svc) return null;
+                return (
+                  <button
+                    onClick={() => openBooking(last.serviceType)}
+                    className="sm:w-48 flex items-center gap-3 px-5 py-5 bg-white border border-gray-100 hover:border-brand-green hover:shadow-sm rounded-2xl transition-all duration-200 text-left group"
+                  >
+                    <span className="text-2xl flex-shrink-0">{svc.icon}</span>
+                    <div className="min-w-0">
+                      <p className="text-xs text-gray-400 font-medium">Повторить</p>
+                      <p className="font-semibold text-sm text-gray-800 truncate group-hover:text-brand-green transition-colors">
+                        {svc.title}
+                      </p>
+                    </div>
+                  </button>
+                );
+              })()}
+            </div>
+          </div>
+
+          {/* 4. Stats row */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 animate-fade-in" style={{ animationDelay: "0.12s" }}>
             <div className="bg-white rounded-2xl p-5 border border-gray-100">
               <p className="text-gray-400 text-xs font-semibold uppercase tracking-wider mb-2">Визитов в месяце</p>
@@ -333,47 +395,6 @@ export function DashboardClient({ user, orders, subscription, coinBalance = 0 }:
               </div>
             </div>
           )}
-
-          {/* 5. Order CTA */}
-          <div className="animate-fade-in" style={{ animationDelay: "0.22s" }}>
-            <div className="flex flex-col sm:flex-row gap-3">
-              <button
-                onClick={() => openBooking()}
-                className="flex-1 flex items-center justify-between gap-4 bg-brand-green hover:bg-brand-green/90 text-white px-6 py-5 rounded-2xl transition-all duration-200 hover:shadow-lg hover:shadow-brand-green/25 active:scale-[0.99] group"
-              >
-                <div className="text-left">
-                  <p className="font-raleway font-black text-lg">Заказать услугу</p>
-                  <p className="text-white/70 text-sm mt-0.5">Менеджер свяжется в течение 5 минут</p>
-                </div>
-                <div className="h-10 w-10 rounded-xl bg-white/15 flex items-center justify-center flex-shrink-0 group-hover:bg-white/25 transition-colors">
-                  <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-                  </svg>
-                </div>
-              </button>
-
-              {/* Quick repeat last order */}
-              {orders.length > 0 && (() => {
-                const last = orders[0];
-                const svc = SERVICES.find(s => s.id === last.serviceType);
-                if (!svc) return null;
-                return (
-                  <button
-                    onClick={() => openBooking(last.serviceType)}
-                    className="sm:w-48 flex items-center gap-3 px-5 py-5 bg-white border border-gray-100 hover:border-brand-green hover:shadow-sm rounded-2xl transition-all duration-200 text-left group"
-                  >
-                    <span className="text-2xl flex-shrink-0">{svc.icon}</span>
-                    <div className="min-w-0">
-                      <p className="text-xs text-gray-400 font-medium">Повторить</p>
-                      <p className="font-semibold text-sm text-gray-800 truncate group-hover:text-brand-green transition-colors">
-                        {svc.title}
-                      </p>
-                    </div>
-                  </button>
-                );
-              })()}
-            </div>
-          </div>
 
           {/* 6. Order history */}
           <div className="animate-fade-in" style={{ animationDelay: "0.28s" }}>

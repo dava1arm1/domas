@@ -151,8 +151,8 @@ export function DashboardShell({ user, children, hasPendingReview }: Props) {
         {/* Logo */}
         <div className="h-16 flex items-center px-5 flex-shrink-0 border-b border-white/[0.06]">
           <Link href="/" className="font-raleway font-black text-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D9E75] rounded-lg">
-            <span className="text-[#5DCAA5]">Дом</span>
-            <span className="text-white">ас</span>
+            <span className="text-[#5DCAA5]">Dom</span>
+            <span className="text-white">as</span>
           </Link>
         </div>
 
@@ -258,10 +258,16 @@ export function DashboardShell({ user, children, hasPendingReview }: Props) {
          *  Mobile:  logo centered, bell on right.                 *
          *  Desktop: logo left, page title center, bell+avatar right *
          */}
+        {/* Safe-area spacer — always visible so content never goes under iPhone notch */}
+        <div
+          className="lg:hidden bg-brand-dark flex-shrink-0"
+          style={{ height: "env(safe-area-inset-top)" }}
+          aria-hidden="true"
+        />
+
         <div className={`flex-shrink-0 overflow-hidden transition-[max-height] duration-300 ease-in-out lg:!max-h-16 ${headerHidden ? "max-h-0" : "max-h-14"}`}>
         <header
           className="h-14 lg:h-16 bg-brand-dark flex items-center px-4 lg:px-6 z-30"
-          style={{ paddingTop: "env(safe-area-inset-top)" }}
         >
           {/* Back arrow — mobile only, returns to main site */}
           <Link
@@ -280,8 +286,8 @@ export function DashboardShell({ user, children, hasPendingReview }: Props) {
             className="font-raleway font-black text-2xl tracking-tight flex-shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5DCAA5] rounded"
             aria-label="Domas — на главную"
           >
-            <span className="text-brand-green-light">Дом</span>
-            <span className="text-white">ас</span>
+            <span className="text-brand-green-light">Dom</span>
+            <span className="text-white">as</span>
           </Link>
 
           {/* Center: page title (desktop only) */}

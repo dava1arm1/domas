@@ -213,8 +213,8 @@ export function AdminShell({ user, children }: AdminShellProps) {
           className="flex items-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D9E75] rounded"
         >
           <span className="font-raleway font-black text-[22px] tracking-tight">
-            <span className="text-[#5DCAA5]">Дом</span>
-            <span className="text-white">ас</span>
+            <span className="text-[#5DCAA5]">Dom</span>
+            <span className="text-white">as</span>
           </span>
           <span className="text-[9px] font-bold bg-[#1D9E75] text-white px-1.5 py-0.5 rounded-md uppercase tracking-widest select-none">
             Admin

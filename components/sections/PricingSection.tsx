@@ -6,11 +6,41 @@ import { MAIN_SUBSCRIPTION, ADDON_SUBSCRIPTIONS } from "@/constants/pricing";
 import { ADDON_ICONS } from "@/constants/icons";
 import { formatPrice } from "@/lib/utils";
 
+function ComingSoonModal({ onClose }: { onClose: () => void }) {
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm" onClick={onClose}>
+      <div className="bg-white rounded-2xl p-8 max-w-sm w-full shadow-2xl text-center" onClick={(e) => e.stopPropagation()}>
+        <div className="h-14 w-14 rounded-2xl bg-brand-green-pale flex items-center justify-center mx-auto mb-4">
+          <svg className="h-7 w-7 text-brand-green" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.75}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <h3 className="font-raleway font-black text-xl text-gray-900 mb-2">Подписки в разработке</h3>
+        <p className="text-gray-500 text-sm leading-relaxed mb-6">
+          Мы работаем над системой подписок. Скоро всё будет готово — следите за обновлениями.
+        </p>
+        <Link
+          href="/#contacts"
+          onClick={onClose}
+          className="inline-flex items-center justify-center w-full bg-brand-green hover:bg-brand-green/90 text-white font-semibold py-3 rounded-xl text-sm transition-all mb-3"
+        >
+          Узнать подробности
+        </Link>
+        <button onClick={onClose} className="text-gray-400 text-sm hover:text-gray-600 transition-colors">
+          Закрыть
+        </button>
+      </div>
+    </div>
+  );
+}
+
 export function PricingSection() {
   const [isAnnual, setIsAnnual] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   return (
     <section id="pricing" className="section-padding bg-surface-secondary">
+      {showModal && <ComingSoonModal onClose={() => setShowModal(false)} />}
       <div className="container-custom">
         {/* Заголовок */}
         <div className="text-center mb-12">
@@ -115,12 +145,12 @@ export function PricingSection() {
 
             {/* Кнопка */}
             <div className="px-8 pb-8">
-              <Link
-                href="/register?plan=waste_removal"
-                className="block text-center bg-brand-green hover:bg-brand-green/90 text-white font-semibold py-3.5 rounded-xl transition-all duration-200 hover:shadow-lg active:scale-95"
+              <button
+                onClick={() => setShowModal(true)}
+                className="block w-full text-center bg-brand-green hover:bg-brand-green/90 text-white font-semibold py-3.5 rounded-xl transition-all duration-200 hover:shadow-lg active:scale-95"
               >
                 Подключить подписку
-              </Link>
+              </button>
             </div>
           </div>
 
@@ -165,12 +195,12 @@ export function PricingSection() {
                       )}
                     </div>
 
-                    <Link
-                      href="/register"
+                    <button
+                      onClick={() => setShowModal(true)}
                       className="flex-shrink-0 bg-brand-green hover:bg-brand-green/90 text-white font-semibold px-4 py-2.5 rounded-xl text-sm transition-all duration-200 active:scale-95"
                     >
                       Выбрать
-                    </Link>
+                    </button>
                   </div>
                 </div>
 

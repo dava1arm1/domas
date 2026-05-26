@@ -5,14 +5,14 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-brand-dark text-white">
+    <footer id="contacts" className="bg-brand-dark text-white">
       <div className="container-custom py-16">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
           {/* Бренд */}
           <div className="md:col-span-1">
             <Link href="/" className="font-raleway font-black text-2xl">
-              <span className="text-brand-green-light">Дом</span>
-              <span className="text-white">ас</span>
+              <span className="text-brand-green-light">Dom</span>
+              <span className="text-white">as</span>
             </Link>
             <p className="mt-4 text-white/60 text-sm leading-relaxed">
               Премиальный сервис по обслуживанию частных домов в Москве и МО

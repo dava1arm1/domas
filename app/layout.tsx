@@ -27,8 +27,8 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: "Домас — обслуживание частных домов в Москве и МО",
-    template: "%s | Домас",
+    default: "Domas — обслуживание частных домов в Москве и МО",
+    template: "%s | Domas",
   },
   description:
     "Премиальный сервис по обслуживанию загородных домов. Вывоз мусора, уход за участком, откачка септика, уборка снега. Один сервис — все задачи.",
@@ -42,10 +42,10 @@ export const metadata: Metadata = {
     "Московская область",
   ],
   openGraph: {
-    title: "Домас — обслуживание частных домов",
+    title: "Domas — обслуживание частных домов",
     description: "Один сервис закрывает все задачи вашего дома",
     url: process.env.NEXT_PUBLIC_APP_URL,
-    siteName: "Домас",
+    siteName: "Domas",
     locale: "ru_RU",
     type: "website",
   },

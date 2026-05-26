@@ -18,7 +18,7 @@ const TEMPLATES: NotifyTemplate[] = [
     textKey: "notify.order_confirm",
     enabledKey: "notify.order_confirm.enabled",
     defaultText:
-      "Ваш заказ на услугу «{{service}}» принят! Дата визита: {{date}} в {{time}}. Команда Домас.",
+      "Ваш заказ на услугу «{{service}}» принят! Дата визита: {{date}} в {{time}}. Команда Domas.",
   },
   {
     id: "visit_reminder_24h",

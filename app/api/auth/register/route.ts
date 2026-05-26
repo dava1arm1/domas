@@ -19,7 +19,6 @@ export async function POST(req: NextRequest) {
     }
 
     const { name, email, password, phone } = result.data;
-    const plan = body.plan ?? "COMFORT";
     const incomingReferralCode: string | undefined = body.referralCode;
 
     // Валидируем реферальный код, если передан
@@ -49,13 +48,6 @@ export async function POST(req: NextRequest) {
     // Хэшируем пароль
     const hashedPassword = await bcrypt.hash(password, 12);
 
-    // Создаём пользователя и сразу создаём подписку
-    const planPrices: Record<string, number> = {
-      BASIC: 1490,
-      COMFORT: 3490,
-      MAX: 5990,
-    };
-
     const user = await db.user.create({
       data: {
         name,
@@ -63,13 +55,6 @@ export async function POST(req: NextRequest) {
         password: hashedPassword,
         phone: phone || null,
         referredBy: referredBy ?? null,
-        subscriptions: {
-          create: {
-            plan: plan as "BASIC" | "COMFORT" | "MAX",
-            status: "ACTIVE",
-            price: planPrices[plan] ?? 3490,
-          },
-        },
       },
       select: {
         id: true,
