@@ -140,11 +140,22 @@ export function OrderFormModal({ onClose, preselectedService }: OrderFormModalPr
       });
   }, []);
 
-  // Close on Escape
+  // Close on Escape + lock body scroll on iOS
   useEffect(() => {
     const handler = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
     document.addEventListener("keydown", handler);
-    return () => document.removeEventListener("keydown", handler);
+
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    document.body.style.position = "fixed";
+    document.body.style.width = "100%";
+
+    return () => {
+      document.removeEventListener("keydown", handler);
+      document.body.style.overflow = prev;
+      document.body.style.position = "";
+      document.body.style.width = "";
+    };
   }, [onClose]);
 
   // ── Photo upload ────────────────────────────────────────────
@@ -249,7 +260,7 @@ export function OrderFormModal({ onClose, preselectedService }: OrderFormModalPr
   // ── Render ──────────────────────────────────────────────────
 
   return (
-    <div className="fixed inset-0 z-[70] flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/70">
+    <div className="fixed inset-0 z-[70] flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/70" onClick={onClose}>
       <div
         className="relative w-full sm:max-w-xl bg-[#0F1A16] border border-white/[0.08] rounded-t-3xl sm:rounded-2xl shadow-2xl flex flex-col"
         style={{ maxHeight: "92dvh" }}
