@@ -249,7 +249,7 @@ export function OrderFormModal({ onClose, preselectedService }: OrderFormModalPr
   // ── Render ──────────────────────────────────────────────────
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/60 backdrop-blur-sm">
+    <div className="fixed inset-0 z-[70] flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/70">
       <div
         className="relative w-full sm:max-w-xl bg-[#0F1A16] border border-white/[0.08] rounded-t-3xl sm:rounded-2xl shadow-2xl flex flex-col"
         style={{ maxHeight: "92dvh" }}
@@ -326,7 +326,7 @@ export function OrderFormModal({ onClose, preselectedService }: OrderFormModalPr
 
         {/* Footer nav */}
         {!submitted && (
-          <div className="px-6 py-4 border-t border-white/[0.06] flex gap-3 flex-shrink-0">
+          <div className="px-6 pt-4 pb-[max(1rem,env(safe-area-inset-bottom))] border-t border-white/[0.06] flex gap-3 flex-shrink-0">
             {step > initialStep && (
               <button
                 onClick={goBack}

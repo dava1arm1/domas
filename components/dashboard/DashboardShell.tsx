@@ -343,7 +343,7 @@ export function DashboardShell({ user, children, hasPendingReview }: Props) {
           MOBILE BOTTOM NAVIGATION — fixed, hidden on desktop
           ════════════════════════════════════════════════════════ */}
       <nav
-        className="lg:hidden fixed bottom-0 left-0 right-0 bg-[#0A0F0D]/95 backdrop-blur-md border-t border-white/[0.07] z-50 flex"
+        className="lg:hidden fixed bottom-0 left-0 right-0 bg-[#0A0F0D] border-t border-white/[0.07] z-50 flex"
         style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
         aria-label="Нижняя навигация"
       >
