@@ -124,6 +124,20 @@ export function DashboardShell({ user, children, hasPendingReview }: Props) {
     lastScrollRef.current = 0;
   }, [pathname]);
 
+  // Lock body scroll on mobile — prevents Chrome Android from scrolling the window
+  // when body has min-h-screen (100vh) but visible viewport is smaller (URL bar showing)
+  useEffect(() => {
+    if (window.innerWidth >= 1024) return;
+    const prevBodyOverflow = document.body.style.overflow;
+    const prevHtmlOverflow = document.documentElement.style.overflow;
+    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prevBodyOverflow;
+      document.documentElement.style.overflow = prevHtmlOverflow;
+    };
+  }, []);
+
   const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
     if (window.innerWidth >= 1024) return;
     const currentY = e.currentTarget.scrollTop;
