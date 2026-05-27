@@ -39,5 +39,6 @@ next-env.d.ts
 /node_modules/.prisma
 .claude/
 
-# Документ передачи — содержит пароли, не коммитить!
+# Документы передачи — содержат пароли, не коммитить!
 HANDOVER.md
+HOSTING_VERCEL.md
