@@ -38,3 +38,6 @@ next-env.d.ts
 # Prisma (generated client — пересоздаётся при деплое)
 /node_modules/.prisma
 .claude/
+
+# Документ передачи — содержит пароли, не коммитить!
+HANDOVER.md
