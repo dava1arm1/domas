@@ -42,12 +42,6 @@ export function HeroSection({
         <div className="absolute inset-0 bg-gradient-to-br from-[#0F1A16] via-[#0d2018] to-[#1D9E75]/30" aria-hidden="true" />
       )}
 
-      {/* Лёгкое затемнение для читаемости текста */}
-      <div className="absolute inset-0 bg-black/25" />
-
-      {/* Top nav readability */}
-      <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-black/40 to-transparent" />
-
       {/* Content */}
       <div className="relative container-custom w-full pt-24 pb-16 md:pt-40 md:pb-24">
         <div className="max-w-3xl">
