@@ -49,14 +49,11 @@ export function HeroSection({
         <div className="absolute inset-0 bg-gradient-to-br from-[#0F1A16] via-[#0d2018] to-[#1D9E75]/30" aria-hidden="true" />
       )}
 
-      {/* Shared gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/50 to-black/75" />
+      {/* Gradient overlay — лёгкое затемнение для читаемости текста */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/55" />
 
-      {/* Stronger bottom gradient — mobile only */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/50 to-transparent md:hidden" />
-
-      {/* Top nav readability gradient */}
-      <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black/70 to-transparent" />
+      {/* Top nav readability */}
+      <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-black/50 to-transparent" />
 
       {/* Content */}
       <div className="relative container-custom w-full pt-24 pb-16 md:pt-40 md:pb-24">
