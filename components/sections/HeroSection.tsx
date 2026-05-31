@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { HeroVideo } from "./HeroVideo";
 
 interface HeroSectionProps {
   heading?:      string;
@@ -36,15 +37,7 @@ export function HeroSection({
 
       {/* Background video */}
       {videoEnabled ? (
-        <video
-          src="/video/hero.mp4"
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-          aria-hidden="true"
-        />
+        <HeroVideo />
       ) : (
         <div className="absolute inset-0 bg-gradient-to-br from-[#0F1A16] via-[#0d2018] to-[#1D9E75]/30" aria-hidden="true" />
       )}
