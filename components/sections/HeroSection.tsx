@@ -33,7 +33,7 @@ export function HeroSection({
   const rest     = words.join(" ");
 
   return (
-    <section className="relative min-h-[100dvh] flex items-center overflow-hidden">
+    <section className="relative min-h-[100dvh] flex items-center overflow-hidden bg-[#0F1A16]">
 
       {/* Background video */}
       {videoEnabled ? (
@@ -42,11 +42,11 @@ export function HeroSection({
         <div className="absolute inset-0 bg-gradient-to-br from-[#0F1A16] via-[#0d2018] to-[#1D9E75]/30" aria-hidden="true" />
       )}
 
-      {/* Gradient overlay — лёгкое затемнение для читаемости текста */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/55" />
+      {/* Лёгкое затемнение для читаемости текста */}
+      <div className="absolute inset-0 bg-black/25" />
 
       {/* Top nav readability */}
-      <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-black/50 to-transparent" />
+      <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-black/40 to-transparent" />
 
       {/* Content */}
       <div className="relative container-custom w-full pt-24 pb-16 md:pt-40 md:pb-24">
