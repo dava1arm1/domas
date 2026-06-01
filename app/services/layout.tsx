@@ -1,5 +1,6 @@
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { RevealInit } from "@/components/sections/service/RevealInit";
 
 export default function ServicesLayout({
   children,
@@ -9,6 +10,7 @@ export default function ServicesLayout({
   return (
     <>
       <Header />
+      <RevealInit />
       <main>{children}</main>
       <Footer />
     </>
