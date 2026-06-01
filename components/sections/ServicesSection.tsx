@@ -7,6 +7,15 @@ import { SERVICE_ICONS } from "@/constants/icons";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import type { Service } from "@/types";
 
+const SERVICE_SLUGS: Record<string, string> = {
+  waste_removal:       "/services/waste-removal",
+  construction_waste:  "/services/construction-waste",
+  lawn_care:           "/services/lawn-care",
+  septic_pumping:      "/services/septic",
+  snow_removal:        "/services/snow-removal",
+  cleaning:            "/services/cleaning",
+};
+
 // ─── Модальное окно услуги ─────────────────────────────────────
 function ServiceModal({
   service,
@@ -132,6 +141,22 @@ function ServiceModal({
               </Link>
             </div>
           </div>
+
+          {/* Ссылка на страницу услуги */}
+          {SERVICE_SLUGS[service.id] && (
+            <div className="mt-4 pt-4 border-t border-gray-100">
+              <Link
+                href={SERVICE_SLUGS[service.id]}
+                onClick={onClose}
+                className="inline-flex items-center gap-1.5 text-sm text-gray-400 hover:text-brand-green transition-colors"
+              >
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+                Открыть полную страницу услуги
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </div>
