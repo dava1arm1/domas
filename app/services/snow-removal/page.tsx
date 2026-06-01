@@ -130,7 +130,7 @@ export default function SnowRemovalPage() {
       {/* ── SECTION 2: ПРОБЛЕМА ──────────────────────────────────────── */}
       <section className="section-padding bg-[#EEF2FF]">
         <div className="container-custom">
-          <div className="text-center mb-12 reveal">
+          <div className="text-center mb-12">
             <span
               className="inline-block text-sm font-semibold uppercase tracking-widest mb-3"
               style={{ color: ACCENT }}
@@ -146,7 +146,7 @@ export default function SnowRemovalPage() {
             {PROBLEM_CARDS.map((card, i) => (
               <div
                 key={card.title}
-                className={`reveal reveal-delay-${i + 1} bg-white rounded-2xl shadow-sm border border-gray-100 p-8`}
+                className={`-delay-${i + 1} bg-white rounded-2xl shadow-sm border border-gray-100 p-8`}
               >
                 <div className="text-3xl mb-4">{card.icon}</div>
                 <h3 className="font-raleway font-bold text-base text-gray-900 mb-2">
@@ -162,7 +162,7 @@ export default function SnowRemovalPage() {
       {/* ── SECTION 3: ЗОНЫ УБОРКИ ───────────────────────────────────── */}
       <section className="section-padding bg-white">
         <div className="container-custom">
-          <div className="text-center mb-12 reveal">
+          <div className="text-center mb-12">
             <span
               className="inline-block text-sm font-semibold uppercase tracking-widest mb-3"
               style={{ color: ACCENT }}
@@ -178,7 +178,7 @@ export default function SnowRemovalPage() {
             {ZONES.map((zone, i) => (
               <div
                 key={zone.title}
-                className={`reveal reveal-delay-${i + 1} bg-surface-secondary rounded-2xl p-6 text-center flex flex-col items-center`}
+                className={`-delay-${i + 1} bg-surface-secondary rounded-2xl p-6 text-center flex flex-col items-center`}
               >
                 <div className="text-3xl mb-3">{zone.icon}</div>
                 <h3 className="font-raleway font-bold text-sm text-gray-900 mb-2 leading-snug">
@@ -194,7 +194,7 @@ export default function SnowRemovalPage() {
       {/* ── SECTION 4: РЕЖИМ РАБОТЫ ──────────────────────────────────── */}
       <section className="section-padding bg-surface-secondary">
         <div className="container-custom">
-          <div className="text-center mb-5 reveal">
+          <div className="text-center mb-5">
             <span
               className="inline-block text-sm font-semibold uppercase tracking-widest mb-3"
               style={{ color: ACCENT }}
@@ -206,7 +206,7 @@ export default function SnowRemovalPage() {
             </h2>
           </div>
 
-          <p className="text-center text-gray-500 text-base max-w-xl mx-auto mb-12 reveal">
+          <p className="text-center text-gray-500 text-base max-w-xl mx-auto mb-12">
             Мы отслеживаем прогноз погоды. Как только синоптики обещают снег —
             планируем выезды заранее. Утром вы уже видите расчищенный участок.
           </p>
@@ -215,7 +215,7 @@ export default function SnowRemovalPage() {
             {SCENARIOS.map((s, i) => (
               <div
                 key={s.title}
-                className={`reveal reveal-delay-${i + 1} bg-white rounded-2xl shadow-sm border border-gray-100 p-7`}
+                className={`-delay-${i + 1} bg-white rounded-2xl shadow-sm border border-gray-100 p-7`}
               >
                 <div
                   className="flex items-center justify-center h-10 w-10 rounded-xl mb-4 font-raleway font-black text-sm text-white"
@@ -231,7 +231,7 @@ export default function SnowRemovalPage() {
             ))}
           </div>
 
-          <div className="text-center reveal">
+          <div className="text-center">
             <p
               className="inline-flex items-center gap-2 rounded-xl px-5 py-3 text-sm font-medium text-white"
               style={{ backgroundColor: ACCENT }}
@@ -248,7 +248,7 @@ export default function SnowRemovalPage() {
       {/* ── SECTION 5: ТЕХНИКА И ПОДХОД ──────────────────────────────── */}
       <section className="section-padding bg-white">
         <div className="container-custom">
-          <div className="text-center mb-12 reveal">
+          <div className="text-center mb-12">
             <span
               className="inline-block text-sm font-semibold uppercase tracking-widest mb-3"
               style={{ color: ACCENT }}
@@ -262,7 +262,7 @@ export default function SnowRemovalPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
             {/* LEFT — описание */}
-            <div className="reveal reveal-delay-1 bg-surface-secondary rounded-2xl p-8">
+            <div className=" bg-surface-secondary rounded-2xl p-8">
               <p className="text-gray-700 text-base leading-relaxed">
                 Используем ручные лопаты для бережной работы у строений,
                 снегоуборщики для больших площадей, ледорубы для наледи. Для
@@ -272,7 +272,7 @@ export default function SnowRemovalPage() {
             </div>
 
             {/* RIGHT — чеклист */}
-            <div className="reveal reveal-delay-2 bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+            <div className=" bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
               <ul className="space-y-4">
                 {CHECKLIST.map((item) => (
                   <li key={item} className="flex items-start gap-3">
@@ -302,7 +302,7 @@ export default function SnowRemovalPage() {
       {/* ── SECTION 6: ПОДПИСКА VS РАЗОВО ────────────────────────────── */}
       <section className="section-padding bg-[#0F1A16]">
         <div className="container-custom">
-          <div className="text-center mb-12 reveal">
+          <div className="text-center mb-12">
             <span
               className="inline-block text-sm font-semibold uppercase tracking-widest mb-3"
               style={{ color: ACCENT }}
@@ -316,7 +316,7 @@ export default function SnowRemovalPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
             {/* LEFT — разовый */}
-            <div className="reveal reveal-delay-1 rounded-2xl border border-white/15 bg-white/[0.04] p-8">
+            <div className=" rounded-2xl border border-white/15 bg-white/[0.04] p-8">
               <h3 className="font-raleway font-bold text-lg text-white mb-6">
                 Разовый вызов
               </h3>
@@ -337,7 +337,7 @@ export default function SnowRemovalPage() {
 
             {/* RIGHT — сезонный (рекомендован) */}
             <div
-              className="reveal reveal-delay-2 rounded-2xl p-8 relative overflow-hidden"
+              className=" rounded-2xl p-8 relative overflow-hidden"
               style={{ border: `2px solid ${ACCENT}`, backgroundColor: ACCENT + "12" }}
             >
               <div

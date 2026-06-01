@@ -183,7 +183,7 @@ export default function LawnCarePage() {
       {/* ── SECTION 2: СЕЗОННЫЙ ПЛАН ─────────────────────────────────── */}
       <section className="section-padding bg-[#f0fdf4]">
         <div className="container-custom">
-          <div className="text-center mb-12 reveal">
+          <div className="text-center mb-12">
             <span
               className="inline-block text-sm font-semibold uppercase tracking-widest mb-3"
               style={{ color: ACCENT }}
@@ -199,7 +199,7 @@ export default function LawnCarePage() {
             {SEASONS.map((season, i) => (
               <div
                 key={season.name}
-                className={`reveal reveal-delay-${i + 1} rounded-2xl border p-7 ${season.bg} ${season.border}`}
+                className={`-delay-${i + 1} rounded-2xl border p-7 ${season.bg} ${season.border}`}
               >
                 <div className="flex items-center gap-3 mb-5">
                   <span className={`h-3 w-3 rounded-full flex-shrink-0 ${season.dot}`} />
@@ -240,7 +240,7 @@ export default function LawnCarePage() {
       {/* ── SECTION 3: ПОЛНЫЙ СПИСОК РАБОТ ───────────────────────────── */}
       <section className="section-padding bg-white">
         <div className="container-custom">
-          <div className="text-center mb-12 reveal">
+          <div className="text-center mb-12">
             <span
               className="inline-block text-sm font-semibold uppercase tracking-widest mb-3"
               style={{ color: ACCENT }}
@@ -256,7 +256,7 @@ export default function LawnCarePage() {
             {WORK_ITEMS.map((item, i) => (
               <div
                 key={item.title}
-                className={`reveal reveal-delay-${(i % 3) + 1} bg-white rounded-2xl shadow-sm border border-gray-100 p-7`}
+                className={`-delay-${(i % 3) + 1} bg-white rounded-2xl shadow-sm border border-gray-100 p-7`}
               >
                 <div className="text-3xl mb-4">{item.icon}</div>
                 <h3 className="font-raleway font-bold text-base text-gray-900 mb-2">
@@ -272,7 +272,7 @@ export default function LawnCarePage() {
       {/* ── SECTION 4: ПОЧЕМУ РЕГУЛЯРНОСТЬ ВАЖНА ────────────────────── */}
       <section className="section-padding bg-surface-secondary">
         <div className="container-custom">
-          <div className="text-center mb-12 reveal">
+          <div className="text-center mb-12">
             <span
               className="inline-block text-sm font-semibold uppercase tracking-widest mb-3"
               style={{ color: ACCENT }}
@@ -286,7 +286,7 @@ export default function LawnCarePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* LEFT — Без системы */}
-            <div className="reveal reveal-delay-1 bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+            <div className=" bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
               <div className="flex items-center gap-2 mb-6">
                 <span className="flex items-center justify-center h-7 w-7 rounded-full bg-red-100 flex-shrink-0">
                   <svg className="h-3.5 w-3.5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -306,7 +306,7 @@ export default function LawnCarePage() {
             </div>
 
             {/* RIGHT — С Domas */}
-            <div className="reveal reveal-delay-2 bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+            <div className=" bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
               <div className="flex items-center gap-2 mb-6">
                 <span className="flex items-center justify-center h-7 w-7 rounded-full flex-shrink-0" style={{ backgroundColor: "#059669" + "1A" }}>
                   <svg className="h-3.5 w-3.5" style={{ color: ACCENT }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -336,7 +336,7 @@ export default function LawnCarePage() {
         <div className="container-custom">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             {/* LEFT — текст */}
-            <div className="reveal">
+            <div className="">
               <span
                 className="inline-block text-sm font-semibold uppercase tracking-widest mb-3"
                 style={{ color: ACCENT }}
@@ -353,7 +353,7 @@ export default function LawnCarePage() {
             </div>
 
             {/* RIGHT — шаги */}
-            <div className="space-y-5 reveal reveal-delay-1">
+            <div className="space-y-5">
               {STEPS.map((step, i) => (
                 <div
                   key={step.num}

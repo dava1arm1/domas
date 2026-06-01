@@ -60,7 +60,7 @@ export default function SepticPage() {
       {/* ── SECTION 2: 5 ПРИЗНАКОВ ───────────────────────────────────── */}
       <section className="section-padding bg-[#F0F9FF]">
         <div className="container-custom max-w-4xl">
-          <div className="text-center mb-4 reveal">
+          <div className="text-center mb-4">
             <span
               className="inline-block text-sm font-semibold uppercase tracking-widest mb-3"
               style={{ color: ACCENT }}
@@ -83,41 +83,41 @@ export default function SepticPage() {
                 icon: "🔔",
                 title: "Запах в доме или на участке",
                 desc: "Неприятный запах в ванной или из унитаза без видимых причин.",
-                delay: "reveal-delay-1",
+                delay: "",
               },
               {
                 num: "2",
                 icon: "🐌",
                 title: "Медленный слив",
                 desc: "Вода уходит медленнее обычного в раковинах и душе.",
-                delay: "reveal-delay-2",
+                delay: "",
               },
               {
                 num: "3",
                 icon: "💧",
                 title: "Лужи на участке",
                 desc: "Влажные пятна над септиком даже в сухую погоду.",
-                delay: "reveal-delay-3",
+                delay: "",
               },
               {
                 num: "4",
                 icon: "📅",
                 title: "Прошло больше года",
                 desc: "При постоянном проживании семьи из 3–4 человек рекомендованный интервал — 12 месяцев.",
-                delay: "reveal-delay-4",
+                delay: "",
               },
               {
                 num: "5",
                 icon: "🚨",
                 title: "Обратный слив",
                 desc: "Самый серьёзный признак. Требует немедленного вызова.",
-                delay: "reveal-delay-5",
+                delay: "",
                 urgent: true,
               },
             ].map((item) => (
               <div
                 key={item.num}
-                className={`reveal ${item.delay} flex items-start gap-5 bg-white rounded-2xl shadow-sm border p-6 ${
+                className={` ${item.delay} flex items-start gap-5 bg-white rounded-2xl shadow-sm border p-6 ${
                   item.urgent
                     ? "border-red-100 bg-red-50/30"
                     : "border-gray-100"
@@ -158,7 +158,7 @@ export default function SepticPage() {
       {/* ── SECTION 3: КАК ПРОХОДИТ ──────────────────────────────────── */}
       <section className="section-padding bg-white">
         <div className="container-custom max-w-4xl">
-          <div className="text-center mb-14 reveal">
+          <div className="text-center mb-14">
             <span
               className="inline-block text-sm font-semibold uppercase tracking-widest mb-3"
               style={{ color: ACCENT }}
@@ -176,36 +176,36 @@ export default function SepticPage() {
                 num: "01",
                 title: "Звонок или заявка",
                 desc: "Принимаем в любое время. Уточняем тип и объём септика, расположение.",
-                delay: "reveal-delay-1",
+                delay: "",
               },
               {
                 num: "02",
                 title: "Выезд",
                 desc: "Приезжаем в согласованное время с ассенизаторской машиной нужного объёма.",
-                delay: "reveal-delay-2",
+                delay: "",
               },
               {
                 num: "03",
                 title: "Откачка",
                 desc: "Ил, осадок и жидкая фракция полностью откачиваются. Среднее время — 40–60 минут.",
-                delay: "reveal-delay-3",
+                delay: "",
               },
               {
                 num: "04",
                 title: "Промывка",
                 desc: "При необходимости промываем стенки камер напорной струёй.",
-                delay: "reveal-delay-4",
+                delay: "",
               },
               {
                 num: "05",
                 title: "Уборка и документ",
                 desc: "Убираем за собой, выдаём документ о вывозе стоков.",
-                delay: "reveal-delay-5",
+                delay: "",
               },
             ].map((step) => (
               <div
                 key={step.num}
-                className={`reveal ${step.delay} flex items-start gap-6 bg-white rounded-2xl border border-gray-100 shadow-sm p-6`}
+                className={` ${step.delay} flex items-start gap-6 bg-white rounded-2xl border border-gray-100 shadow-sm p-6`}
               >
                 <div
                   className="flex-shrink-0 h-12 w-12 rounded-xl flex items-center justify-center"
@@ -235,7 +235,7 @@ export default function SepticPage() {
       {/* ── SECTION 4: ЧАСТОТА (ТАБЛИЦА) ─────────────────────────────── */}
       <section className="section-padding bg-surface-secondary">
         <div className="container-custom max-w-4xl">
-          <div className="text-center mb-4 reveal">
+          <div className="text-center mb-4">
             <span
               className="inline-block text-sm font-semibold uppercase tracking-widest mb-3"
               style={{ color: ACCENT }}
@@ -250,7 +250,7 @@ export default function SepticPage() {
             </p>
           </div>
 
-          <div className="mt-10 reveal reveal-delay-1 bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+          <div className="mt-10 bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
             <table className="w-full text-sm">
               <thead>
                 <tr style={{ backgroundColor: ACCENT + "10" }}>
@@ -312,7 +312,7 @@ export default function SepticPage() {
             </table>
           </div>
 
-          <p className="mt-4 text-center text-gray-400 text-xs reveal reveal-delay-2">
+          <p className="mt-4 text-center text-gray-400 text-xs">
             Данные приблизительные. Итоговый интервал зависит от типа грунта,
             сезона и состава стоков.
           </p>
@@ -322,7 +322,7 @@ export default function SepticPage() {
       {/* ── SECTION 5: ТИПЫ СЕПТИКОВ ─────────────────────────────────── */}
       <section className="section-padding bg-white">
         <div className="container-custom">
-          <div className="text-center mb-12 reveal">
+          <div className="text-center mb-12">
             <span
               className="inline-block text-sm font-semibold uppercase tracking-widest mb-3"
               style={{ color: ACCENT }}
@@ -339,27 +339,27 @@ export default function SepticPage() {
               {
                 title: "Однокамерный",
                 desc: "Классический септик-яма. Самый распространённый тип в Подмосковье.",
-                delay: "reveal-delay-1",
+                delay: "",
               },
               {
                 title: "Двухкамерный",
                 desc: "Механическая очистка в первой камере, доочистка во второй.",
-                delay: "reveal-delay-2",
+                delay: "",
               },
               {
                 title: "Биосептик",
                 desc: "ТОП, Тополь, Евролос и аналоги. Работаем аккуратно, не повреждая биосистему.",
-                delay: "reveal-delay-3",
+                delay: "",
               },
               {
                 title: "Накопительная ёмкость",
                 desc: "Пластиковые кубы, еврокубы. Без откачки не работают.",
-                delay: "reveal-delay-4",
+                delay: "",
               },
             ].map((card) => (
               <div
                 key={card.title}
-                className={`reveal ${card.delay} bg-white rounded-2xl shadow-sm border border-gray-100 p-6 flex flex-col gap-3`}
+                className={` ${card.delay} bg-white rounded-2xl shadow-sm border border-gray-100 p-6 flex flex-col gap-3`}
               >
                 <div
                   className="h-10 w-10 rounded-xl flex items-center justify-center"
@@ -395,7 +395,7 @@ export default function SepticPage() {
       {/* ── SECTION 6: АВАРИЙНЫЙ ВЫЕЗД ───────────────────────────────── */}
       <section className="section-padding bg-brand-dark">
         <div className="container-custom max-w-3xl text-center">
-          <div className="reveal">
+          <div className="">
             <div
               className="inline-flex items-center justify-center h-14 w-14 rounded-2xl mb-6 mx-auto"
               style={{ backgroundColor: ACCENT + "25" }}

@@ -140,7 +140,7 @@ export default function CleaningPage() {
       {/* ── SECTION 2: ДВА ВИДА УБОРКИ ──────────────────────────────── */}
       <section className="section-padding bg-surface-secondary">
         <div className="container-custom">
-          <div className="text-center mb-12 reveal">
+          <div className="text-center mb-12">
             <span
               className="inline-block text-sm font-semibold uppercase tracking-widest mb-3"
               style={{ color: ACCENT }}
@@ -154,7 +154,7 @@ export default function CleaningPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* LEFT — генеральная */}
-            <div className="reveal reveal-delay-1 bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+            <div className=" bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
               <div
                 className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full mb-5 text-white"
                 style={{ backgroundColor: ACCENT }}
@@ -184,7 +184,7 @@ export default function CleaningPage() {
             </div>
 
             {/* RIGHT — поддерживающая */}
-            <div className="reveal reveal-delay-2 bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+            <div className=" bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
               <div
                 className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full mb-5"
                 style={{ backgroundColor: ACCENT + "15", color: ACCENT }}
@@ -219,7 +219,7 @@ export default function CleaningPage() {
       {/* ── SECTION 3: ЧЕК-ЛИСТ ПО КОМНАТАМ ────────────────────────── */}
       <section className="section-padding bg-white">
         <div className="container-custom">
-          <div className="text-center mb-4 reveal">
+          <div className="text-center mb-4">
             <span
               className="inline-block text-sm font-semibold uppercase tracking-widest mb-3"
               style={{ color: ACCENT }}
@@ -230,7 +230,7 @@ export default function CleaningPage() {
               Что входит в генеральную уборку
             </h2>
           </div>
-          <p className="text-center text-gray-500 text-base max-w-lg mx-auto mb-12 reveal">
+          <p className="text-center text-gray-500 text-base max-w-lg mx-auto mb-12">
             Мы работаем по стандартизированному чек-листу. Ничего не забыто.
           </p>
 
@@ -238,7 +238,7 @@ export default function CleaningPage() {
             {ROOMS.map((room, i) => (
               <div
                 key={room.name}
-                className={`reveal reveal-delay-${i + 1} bg-surface-secondary rounded-2xl p-7`}
+                className={`-delay-${i + 1} bg-surface-secondary rounded-2xl p-7`}
               >
                 <h3
                   className="font-raleway font-bold text-base mb-5"
@@ -271,7 +271,7 @@ export default function CleaningPage() {
       {/* ── SECTION 4: ХИМИЯ И ОБОРУДОВАНИЕ ─────────────────────────── */}
       <section className="section-padding bg-surface-secondary">
         <div className="container-custom">
-          <div className="text-center mb-12 reveal">
+          <div className="text-center mb-12">
             <span
               className="inline-block text-sm font-semibold uppercase tracking-widest mb-3"
               style={{ color: ACCENT }}
@@ -285,7 +285,7 @@ export default function CleaningPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* LEFT — Химия */}
-            <div className="reveal reveal-delay-1 bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+            <div className=" bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
               <h3 className="font-raleway font-bold text-base text-gray-900 mb-5">Химия</h3>
               <ul className="space-y-3">
                 {CHEMISTRY_ITEMS.map((item) => (
@@ -311,7 +311,7 @@ export default function CleaningPage() {
             </div>
 
             {/* RIGHT — Оборудование */}
-            <div className="reveal reveal-delay-2 bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+            <div className=" bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
               <h3 className="font-raleway font-bold text-base text-gray-900 mb-5">Оборудование</h3>
               <ul className="space-y-3">
                 {EQUIPMENT_ITEMS.map((item) => (
@@ -342,7 +342,7 @@ export default function CleaningPage() {
       {/* ── SECTION 5: КАК ПОДГОТОВИТЬСЯ ────────────────────────────── */}
       <section className="section-padding bg-white">
         <div className="container-custom">
-          <div className="text-center mb-12 reveal">
+          <div className="text-center mb-12">
             <span
               className="inline-block text-sm font-semibold uppercase tracking-widest mb-3"
               style={{ color: ACCENT }}
@@ -358,7 +358,7 @@ export default function CleaningPage() {
             {PREP_STEPS.map((step, i) => (
               <div
                 key={step.num}
-                className={`reveal reveal-delay-${i + 1} flex flex-col bg-surface-secondary rounded-2xl p-7`}
+                className={`-delay-${i + 1} flex flex-col bg-surface-secondary rounded-2xl p-7`}
               >
                 <div
                   className="flex items-center justify-center h-11 w-11 rounded-xl mb-5 font-raleway font-black text-sm text-white flex-shrink-0"
@@ -374,7 +374,7 @@ export default function CleaningPage() {
             ))}
           </div>
 
-          <div className="text-center reveal">
+          <div className="text-center">
             <p className="inline-flex items-center gap-2 bg-gray-50 border border-gray-200 rounded-xl px-5 py-3 text-sm text-gray-600 font-medium">
               <svg className="h-4 w-4 flex-shrink-0 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -388,7 +388,7 @@ export default function CleaningPage() {
       {/* ── SECTION 6: КОНТРОЛЬ КАЧЕСТВА ─────────────────────────────── */}
       <section className="section-padding bg-[#0F1A16]">
         <div className="container-custom">
-          <div className="text-center mb-12 reveal">
+          <div className="text-center mb-12">
             <span
               className="inline-block text-sm font-semibold uppercase tracking-widest mb-3"
               style={{ color: ACCENT }}
@@ -404,7 +404,7 @@ export default function CleaningPage() {
             {QUALITY_ITEMS.map((item, i) => (
               <div
                 key={item.title}
-                className={`reveal reveal-delay-${i + 1} bg-white/[0.04] border border-white/10 rounded-2xl p-8`}
+                className={`-delay-${i + 1} bg-white/[0.04] border border-white/10 rounded-2xl p-8`}
               >
                 <div
                   className="flex items-center justify-center h-10 w-10 rounded-xl mb-5 font-raleway font-black text-sm text-white"
@@ -418,7 +418,7 @@ export default function CleaningPage() {
             ))}
           </div>
 
-          <div className="mt-10 text-center reveal">
+          <div className="mt-10 text-center">
             <Link
               href="/register"
               className="inline-flex items-center justify-center gap-2 font-semibold px-8 py-4 rounded-xl text-white transition-all duration-200 hover:opacity-90 active:scale-95"

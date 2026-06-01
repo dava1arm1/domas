@@ -59,7 +59,7 @@ export default function WasteRemovalPage() {
       {/* ── SECTION 2: ПРОБЛЕМА ──────────────────────────────────────── */}
       <section className="section-padding bg-surface-secondary">
         <div className="container-custom">
-          <div className="text-center mb-12 reveal">
+          <div className="text-center mb-12">
             <span className="inline-block text-sm font-semibold uppercase tracking-widest text-brand-green mb-3">
               Знакомая картина
             </span>
@@ -78,7 +78,7 @@ export default function WasteRemovalPage() {
             <div className="hidden md:block absolute top-10 left-[10%] right-[10%] h-px border-t-2 border-dashed border-gray-200" />
 
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-              <div className="reveal reveal-delay-1 relative flex flex-col items-center text-center">
+              <div className=" relative flex flex-col items-center text-center">
                 <div className="h-20 w-20 rounded-2xl bg-white border border-gray-100 shadow-sm flex items-center justify-center text-3xl mb-4 relative z-10">
                   🛍
                 </div>
@@ -88,7 +88,7 @@ export default function WasteRemovalPage() {
                 </p>
               </div>
 
-              <div className="reveal reveal-delay-2 relative flex flex-col items-center text-center">
+              <div className=" relative flex flex-col items-center text-center">
                 <div className="h-20 w-20 rounded-2xl bg-white border border-gray-100 shadow-sm flex items-center justify-center text-3xl mb-4 relative z-10">
                   🚶
                 </div>
@@ -98,7 +98,7 @@ export default function WasteRemovalPage() {
                 </p>
               </div>
 
-              <div className="reveal reveal-delay-3 relative flex flex-col items-center text-center">
+              <div className=" relative flex flex-col items-center text-center">
                 <div className="h-20 w-20 rounded-2xl bg-white border border-gray-100 shadow-sm flex items-center justify-center text-3xl mb-4 relative z-10">
                   ♻️
                 </div>
@@ -108,7 +108,7 @@ export default function WasteRemovalPage() {
                 </p>
               </div>
 
-              <div className="reveal reveal-delay-4 relative flex flex-col items-center text-center">
+              <div className=" relative flex flex-col items-center text-center">
                 <div className="h-20 w-20 rounded-2xl bg-white border border-gray-100 shadow-sm flex items-center justify-center text-3xl mb-4 relative z-10">
                   🔁
                 </div>
@@ -121,7 +121,7 @@ export default function WasteRemovalPage() {
           </div>
 
           {/* Callout */}
-          <div className="reveal mt-12 bg-white rounded-2xl border border-gray-100 shadow-sm p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center gap-6">
+          <div className=" mt-12 bg-white rounded-2xl border border-gray-100 shadow-sm p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center gap-6">
             <div className="flex-shrink-0 h-12 w-12 rounded-xl bg-brand-green/10 flex items-center justify-center">
               <svg className="h-6 w-6 text-brand-green" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -141,7 +141,7 @@ export default function WasteRemovalPage() {
       {/* ── SECTION 3: КАК РАБОТАЕТ ──────────────────────────────────── */}
       <section className="section-padding bg-white">
         <div className="container-custom">
-          <div className="text-center mb-14 reveal">
+          <div className="text-center mb-14">
             <span className="inline-block text-sm font-semibold uppercase tracking-widest text-brand-green mb-3">
               Процесс
             </span>
@@ -179,7 +179,7 @@ export default function WasteRemovalPage() {
               ].map((step, i) => (
                 <div
                   key={step.num}
-                  className={`reveal reveal-delay-${i + 1} flex flex-col items-start md:items-center text-left md:text-center`}
+                  className={`-delay-${i + 1} flex flex-col items-start md:items-center text-left md:text-center`}
                 >
                   <div className="flex items-center justify-center h-16 w-16 rounded-2xl bg-brand-green/10 mb-5 flex-shrink-0">
                     <span className="font-raleway font-black text-xl text-brand-green">
@@ -197,7 +197,7 @@ export default function WasteRemovalPage() {
             </div>
           </div>
 
-          <div className="mt-10 text-center reveal reveal-delay-4">
+          <div className="mt-10 text-center">
             <p className="inline-flex items-center gap-2 bg-brand-green/8 border border-brand-green/20 rounded-xl px-5 py-3 text-sm text-brand-green font-medium">
               <svg
                 className="h-4 w-4 flex-shrink-0"
@@ -222,7 +222,7 @@ export default function WasteRemovalPage() {
       {/* ── SECTION 4: ЧТО ВХОДИТ ────────────────────────────────────── */}
       <section className="section-padding bg-surface-secondary">
         <div className="container-custom">
-          <div className="text-center mb-12 reveal">
+          <div className="text-center mb-12">
             <span className="inline-block text-sm font-semibold uppercase tracking-widest text-brand-green mb-3">
               Состав подписки
             </span>
@@ -233,7 +233,7 @@ export default function WasteRemovalPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
             {/* Included list */}
-            <div className="reveal reveal-delay-1 bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+            <div className=" bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
               <h3 className="font-raleway font-bold text-lg text-gray-900 mb-6">
                 В каждый визит
               </h3>
@@ -271,7 +271,7 @@ export default function WasteRemovalPage() {
             </div>
 
             {/* Price callout */}
-            <div className="reveal reveal-delay-2 bg-brand-dark rounded-2xl p-8 text-white">
+            <div className=" bg-brand-dark rounded-2xl p-8 text-white">
               <p className="text-white/50 text-xs font-semibold uppercase tracking-widest mb-2">
                 Основная подписка
               </p>
@@ -324,7 +324,7 @@ export default function WasteRemovalPage() {
       {/* ── SECTION 5: СРАВНЕНИЕ ─────────────────────────────────────── */}
       <section className="section-padding bg-white">
         <div className="container-custom max-w-4xl">
-          <div className="text-center mb-12 reveal">
+          <div className="text-center mb-12">
             <span className="inline-block text-sm font-semibold uppercase tracking-widest text-brand-green mb-3">
               Сравнение
             </span>
@@ -333,7 +333,7 @@ export default function WasteRemovalPage() {
             </h2>
           </div>
 
-          <div className="reveal reveal-delay-1 bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+          <div className=" bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-gray-100">
@@ -400,7 +400,7 @@ export default function WasteRemovalPage() {
       {/* ── SECTION 6: СЦЕНАРИИ ──────────────────────────────────────── */}
       <section className="section-padding bg-surface-secondary">
         <div className="container-custom">
-          <div className="text-center mb-12 reveal">
+          <div className="text-center mb-12">
             <span className="inline-block text-sm font-semibold uppercase tracking-widest text-brand-green mb-3">
               Для кого
             </span>
@@ -415,24 +415,24 @@ export default function WasteRemovalPage() {
                 icon: "🏡",
                 title: "Постоянное проживание",
                 desc: "Семья из 3–4 человек производит 2–3 мешка мусора в неделю. Подписка закрывает вопрос вывоза полностью.",
-                delay: "reveal-delay-1",
+                delay: "",
               },
               {
                 icon: "🏖",
                 title: "Сезонный дом",
                 desc: "Приезжаете на выходные? Настраиваем вывоз на выходные дни. Приедете — чисто.",
-                delay: "reveal-delay-2",
+                delay: "",
               },
               {
                 icon: "🔨",
                 title: "После ремонта",
                 desc: "Строительный мусор не входит в подписку, но наши клиенты получают скидку 10% на разовый вывоз стройотходов.",
-                delay: "reveal-delay-3",
+                delay: "",
               },
             ].map((card) => (
               <div
                 key={card.title}
-                className={`reveal ${card.delay} bg-white rounded-2xl shadow-sm border border-gray-100 p-8`}
+                className={` ${card.delay} bg-white rounded-2xl shadow-sm border border-gray-100 p-8`}
               >
                 <div className="text-3xl mb-4">{card.icon}</div>
                 <h3 className="font-raleway font-bold text-base text-gray-900 mb-2">

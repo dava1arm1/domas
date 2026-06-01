@@ -60,7 +60,7 @@ export default function ConstructionWastePage() {
       {/* ── SECTION 2: ЧТО ВЫВОЗИМ ───────────────────────────────────── */}
       <section className="section-padding bg-surface-secondary">
         <div className="container-custom">
-          <div className="text-center mb-12 reveal">
+          <div className="text-center mb-12">
             <span
               className="inline-block text-sm font-semibold uppercase tracking-widest mb-3"
               style={{ color: ACCENT }}
@@ -74,7 +74,7 @@ export default function ConstructionWastePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Строительный мусор */}
-            <div className="reveal reveal-delay-1 bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+            <div className=" bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
               <div
                 className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-5 text-sm font-semibold"
                 style={{ backgroundColor: ACCENT + "15", color: ACCENT }}
@@ -130,7 +130,7 @@ export default function ConstructionWastePage() {
             </div>
 
             {/* Растительные отходы */}
-            <div className="reveal reveal-delay-2 bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+            <div className=" bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
               <div className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-5 text-sm font-semibold bg-brand-green/10 text-brand-green">
                 <svg
                   className="h-4 w-4"
@@ -179,7 +179,7 @@ export default function ConstructionWastePage() {
           </div>
 
           {/* Не берём */}
-          <div className="mt-5 reveal reveal-delay-3 flex items-start gap-3 bg-red-50 border border-red-100 rounded-xl px-5 py-4 max-w-2xl mx-auto">
+          <div className="mt-5 flex items-start gap-3 bg-red-50 border border-red-100 rounded-xl px-5 py-4 max-w-2xl mx-auto">
             <svg
               className="h-5 w-5 text-red-400 flex-shrink-0 mt-0.5"
               fill="none"
@@ -204,7 +204,7 @@ export default function ConstructionWastePage() {
       {/* ── SECTION 3: ЗАЯВКА ────────────────────────────────────────── */}
       <section className="section-padding bg-white">
         <div className="container-custom max-w-4xl">
-          <div className="text-center mb-14 reveal">
+          <div className="text-center mb-14">
             <span
               className="inline-block text-sm font-semibold uppercase tracking-widest mb-3"
               style={{ color: ACCENT }}
@@ -222,24 +222,24 @@ export default function ConstructionWastePage() {
                 num: "1",
                 title: "Опишите объём",
                 desc: "Позвоните или напишите нам. Скажите что нужно вывезти и примерный объём. Можно прислать фото.",
-                delay: "reveal-delay-1",
+                delay: "",
               },
               {
                 num: "2",
                 title: "Получите цену",
                 desc: "Рассчитаем стоимость в течение 15 минут и согласуем удобное время выезда.",
-                delay: "reveal-delay-2",
+                delay: "",
               },
               {
                 num: "3",
                 title: "Получите чистый участок",
                 desc: "Бригада приедет, загрузит и вывезет всё. Уберут за собой.",
-                delay: "reveal-delay-3",
+                delay: "",
               },
             ].map((step) => (
               <div
                 key={step.num}
-                className={`reveal ${step.delay} flex items-start gap-6`}
+                className={` ${step.delay} flex items-start gap-6`}
               >
                 <div
                   className="flex-shrink-0 flex items-center justify-center rounded-2xl font-raleway font-black text-white text-3xl md:text-4xl"
@@ -264,7 +264,7 @@ export default function ConstructionWastePage() {
             ))}
           </div>
 
-          <div className="mt-8 reveal reveal-delay-4 text-center">
+          <div className="mt-8 text-center">
             <p className="inline-flex items-center gap-2 bg-brand-green/8 border border-brand-green/20 rounded-xl px-5 py-3 text-sm text-brand-green font-medium">
               <svg
                 className="h-4 w-4 flex-shrink-0"
@@ -289,7 +289,7 @@ export default function ConstructionWastePage() {
       {/* ── SECTION 4: ОБЪЁМ И ЦЕНА ───────────────────────────────────── */}
       <section className="section-padding bg-surface-secondary">
         <div className="container-custom">
-          <div className="text-center mb-12 reveal">
+          <div className="text-center mb-12">
             <span
               className="inline-block text-sm font-semibold uppercase tracking-widest mb-3"
               style={{ color: ACCENT }}
@@ -307,25 +307,25 @@ export default function ConstructionWastePage() {
                 title: "Небольшой объём",
                 sub: "до 5 м³",
                 desc: "Остатки небольшого ремонта, обрезка сада. Приедем с небольшой машиной.",
-                delay: "reveal-delay-1",
+                delay: "",
               },
               {
                 title: "Средний объём",
                 sub: "5–15 м³",
                 desc: "Ремонт комнаты или гаража, сезонная уборка участка. Средний грузовик.",
-                delay: "reveal-delay-2",
+                delay: "",
                 featured: true,
               },
               {
                 title: "Большой объём",
                 sub: "от 15 м³",
                 desc: "Снос постройки, капитальный ремонт, расчистка участка. Несколько машин или контейнер.",
-                delay: "reveal-delay-3",
+                delay: "",
               },
             ].map((card) => (
               <div
                 key={card.title}
-                className={`reveal ${card.delay} rounded-2xl p-8 flex flex-col gap-3 ${
+                className={` ${card.delay} rounded-2xl p-8 flex flex-col gap-3 ${
                   card.featured
                     ? "shadow-lg border-2 text-white"
                     : "bg-white shadow-sm border border-gray-100"
@@ -379,7 +379,7 @@ export default function ConstructionWastePage() {
       {/* ── SECTION 5: СЦЕНАРИИ ──────────────────────────────────────── */}
       <section className="section-padding bg-white">
         <div className="container-custom">
-          <div className="text-center mb-12 reveal">
+          <div className="text-center mb-12">
             <span
               className="inline-block text-sm font-semibold uppercase tracking-widest mb-3"
               style={{ color: ACCENT }}
@@ -396,7 +396,7 @@ export default function ConstructionWastePage() {
               {
                 title: "После ремонта",
                 desc: "Заменили полы, переклеили обои? Штукатурка, плитка, упаковка — всё заберём за один раз.",
-                delay: "reveal-delay-1",
+                delay: "",
                 icon: (
                   <svg
                     className="h-6 w-6"
@@ -417,7 +417,7 @@ export default function ConstructionWastePage() {
               {
                 title: "Строительство на участке",
                 desc: "Залили фундамент, поставили забор? Куски бетона, опалубка, арматура.",
-                delay: "reveal-delay-2",
+                delay: "",
                 icon: (
                   <svg
                     className="h-6 w-6"
@@ -438,7 +438,7 @@ export default function ConstructionWastePage() {
               {
                 title: "Осенняя уборка сада",
                 desc: "Обрезали деревья, убрали старые кусты? Объём веток и листьев всегда больше, чем кажется.",
-                delay: "reveal-delay-3",
+                delay: "",
                 icon: (
                   <svg
                     className="h-6 w-6"
@@ -459,7 +459,7 @@ export default function ConstructionWastePage() {
               {
                 title: "Расчистка участка",
                 desc: "Купили запущенный участок и хотите начать с чистого листа.",
-                delay: "reveal-delay-4",
+                delay: "",
                 icon: (
                   <svg
                     className="h-6 w-6"
@@ -480,7 +480,7 @@ export default function ConstructionWastePage() {
             ].map((card) => (
               <div
                 key={card.title}
-                className={`reveal ${card.delay} bg-white rounded-2xl shadow-sm border border-gray-100 p-6 flex flex-col gap-3`}
+                className={` ${card.delay} bg-white rounded-2xl shadow-sm border border-gray-100 p-6 flex flex-col gap-3`}
               >
                 <div
                   className="h-12 w-12 rounded-xl flex items-center justify-center"
@@ -505,7 +505,7 @@ export default function ConstructionWastePage() {
         className="section-padding"
         style={{ backgroundColor: ACCENT + "0F" }}
       >
-        <div className="container-custom max-w-3xl text-center reveal">
+        <div className="container-custom max-w-3xl text-center">
           <h2 className="font-raleway font-black text-2xl md:text-3xl text-gray-900 mb-4">
             Готовы вывезти мусор?
           </h2>
