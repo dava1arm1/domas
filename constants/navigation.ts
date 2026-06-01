@@ -17,14 +17,19 @@ export const ALL_NAV_LINKS = [
 
 export const FOOTER_LINKS = {
   services: [
-    { href: "/#services", label: "Все услуги" },
-    { href: "/#pricing", label: "Тарифы" },
-    { href: "/dashboard", label: "Личный кабинет" },
+    { href: "/services/waste-removal",      label: "Вывоз мусора" },
+    { href: "/services/lawn-care",           label: "Уход за участком" },
+    { href: "/services/septic",              label: "Откачка септика" },
+    { href: "/services/construction-waste",  label: "Строительные отходы" },
+    { href: "/services/snow-removal",        label: "Уборка снега" },
+    { href: "/services/cleaning",            label: "Клининг" },
+    { href: "/#pricing",                     label: "Тарифы" },
   ],
   company: [
     { href: "/#reviews", label: "Отзывы" },
-    { href: "/#faq", label: "FAQ" },
-    { href: "/privacy", label: "Политика конфиденциальности" },
+    { href: "/#faq",     label: "FAQ" },
+    { href: "/privacy",  label: "Политика конфиденциальности" },
+    { href: "/dashboard", label: "Личный кабинет" },
   ],
 } as const;
 
