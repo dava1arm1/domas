@@ -21,7 +21,8 @@ const PAGE_TITLES: Record<string, string> = {
   "/admin/campaigns":          "Рассылки",
   "/admin/site":               "Настройки сайта",
   "/admin/site/hero":          "Главная страница",
-  "/admin/site/services":      "Услуги",
+  "/admin/site/services":       "Услуги",
+  "/admin/site/service-pages": "Страницы услуг",
   "/admin/site/pricing":       "Цены и тарифы",
   "/admin/site/contacts":      "Контакты и реквизиты",
   "/admin/site/texts":         "Тексты сайта",
@@ -132,6 +133,7 @@ const NAV: NavItem[] = [
     children: [
       { label: "Главная страница",   href: "/admin/site/hero" },
       { label: "Услуги",             href: "/admin/site/services" },
+      { label: "Страницы услуг",     href: "/admin/site/service-pages" },
       { label: "Цены и тарифы",      href: "/admin/site/pricing" },
       { label: "Контакты",           href: "/admin/site/contacts" },
       { label: "Тексты сайта",       href: "/admin/site/texts" },

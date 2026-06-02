@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { ServicePageLayout } from "@/components/services/ServicePageLayout";
-import { SERVICE_PAGE_DATA } from "@/constants/service-pages";
+import { getServicePageData } from "@/lib/service-page-content";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Откачка септика в Подмосковье | Домас",
@@ -14,6 +16,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function SepticPage() {
-  return <ServicePageLayout data={SERVICE_PAGE_DATA.septic_pumping} />;
+export default async function SepticPage() {
+  const data = await getServicePageData("septic_pumping");
+  return <ServicePageLayout data={data} />;
 }
