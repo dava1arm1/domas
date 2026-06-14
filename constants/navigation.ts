@@ -28,7 +28,8 @@ export const FOOTER_LINKS = {
   company: [
     { href: "/#reviews", label: "Отзывы" },
     { href: "/#faq",     label: "FAQ" },
-    { href: "/privacy",  label: "Политика конфиденциальности" },
+    { href: "/privacy",       label: "Политика конфиденциальности" },
+    { href: "/personal-data", label: "Обработка персональных данных" },
     { href: "/dashboard", label: "Личный кабинет" },
   ],
 } as const;
