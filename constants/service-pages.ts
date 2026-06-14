@@ -79,6 +79,9 @@ export interface ServicePageData {
   // Final CTA
   finalCtaHeading: string;
   finalCtaSubtitle: string;
+
+  // Pricing model
+  isSubscription?: boolean; // true → subscription copy; false/undefined → one-time copy
 }
 
 export const SERVICE_PAGE_DATA: Record<string, ServicePageData> = {
@@ -244,6 +247,7 @@ export const SERVICE_PAGE_DATA: Record<string, ServicePageData> = {
     finalCtaHeading: "Решите этот вопрос раз и навсегда",
     finalCtaSubtitle:
       "Подключите вывоз мусора по подписке — и забудьте о помойках, мешках и звонках. Навсегда.",
+    isSubscription: true,
   },
 
   lawn_care: {
@@ -324,10 +328,9 @@ export const SERVICE_PAGE_DATA: Record<string, ServicePageData> = {
       { text: "Обрезка кустарников и живой изгороди" },
       { text: "Уборка листьев осенью" },
       { text: "Фотоотчёт после каждого визита" },
-      { text: "Скидка 10% при наличии основной подписки" },
     ],
     price: "от 2 990 ₽",
-    priceNote: "в месяц · сезон май–октябрь",
+    priceNote: "за выезд · сезон май–октябрь",
 
     comparisonRows: [
       {
@@ -408,7 +411,7 @@ export const SERVICE_PAGE_DATA: Record<string, ServicePageData> = {
 
     finalCtaHeading: "Пусть участок сам о себе заботится",
     finalCtaSubtitle:
-      "Подпишитесь на уход за участком — и в этом сезоне ваши выходные за городом будут только про отдых.",
+      "Закажите уход за участком — и в этом сезоне ваши выходные за городом будут только про отдых.",
   },
 
   septic_pumping: {
@@ -789,9 +792,9 @@ export const SERVICE_PAGE_DATA: Record<string, ServicePageData> = {
 
     howItWorksSteps: [
       {
-        title: "Сезонный договор",
+        title: "Заявка",
         description:
-          "Заключаем договор до начала зимы — вы в приоритете, цена зафиксирована",
+          "Оставляете заявку — менеджер перезванивает и уточняет детали участка",
       },
       {
         title: "Мониторинг погоды",
@@ -821,8 +824,8 @@ export const SERVICE_PAGE_DATA: Record<string, ServicePageData> = {
       { text: "Уборка снега с кровли (по запросу)" },
       { text: "Мониторинг прогноза — приедем до того как стало проблемой" },
     ],
-    price: "Сезонная подписка",
-    priceNote: "или разовый выезд · цена по заявке",
+    price: "По заявке",
+    priceNote: "зависит от площади · разовый выезд или сезон",
 
     comparisonRows: [
       {
@@ -903,7 +906,7 @@ export const SERVICE_PAGE_DATA: Record<string, ServicePageData> = {
 
     finalCtaHeading: "Зима — для уюта, не для лопаты",
     finalCtaSubtitle:
-      "Оформите сезонный контракт до первого снегопада — и эта зима пройдёт без стресса.",
+      "Оставьте заявку сейчас — рассчитаем стоимость и приедем при первом снегопаде.",
   },
 
   cleaning: {
@@ -912,7 +915,7 @@ export const SERVICE_PAGE_DATA: Record<string, ServicePageData> = {
     slug: "cleaning",
     accentColor: "#DC2626",
 
-    badge: "По расписанию",
+    badge: "Разовая и регулярная",
     h1: "Профессиональная уборка — так чисто, как сами не уберёте",
     subtitle:
       "Генеральная и поддерживающая уборка частного дома с профессиональным оборудованием и экологичной химией. Приедем со всем необходимым.",
@@ -988,7 +991,7 @@ export const SERVICE_PAGE_DATA: Record<string, ServicePageData> = {
       { text: "Духовка и холодильник внутри", category: "Генеральная" },
     ],
     price: "от 3 490 ₽",
-    priceNote: "в месяц (3 уборки) · генеральная — по запросу",
+    priceNote: "за уборку · генеральная — по запросу",
 
     comparisonRows: [
       {
@@ -1069,6 +1072,6 @@ export const SERVICE_PAGE_DATA: Record<string, ServicePageData> = {
 
     finalCtaHeading: "Дом должен быть чистым — это не ваша работа",
     finalCtaSubtitle:
-      "Подключите регулярный клининг и забудьте о тряпках, швабрах и потраченных выходных.",
+      "Закажите уборку — приедем со всем необходимым и сделаем так, как вы сами бы не успели.",
   },
 };

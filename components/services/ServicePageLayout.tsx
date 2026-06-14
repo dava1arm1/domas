@@ -56,6 +56,15 @@ function ChevronIcon({ open }: { open: boolean }) {
 export function ServicePageLayout({ data }: { data: ServicePageData }) {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const { accentColor } = data;
+  const isSub = data.isSubscription === true;
+
+  const ctaPrimary    = isSub ? "Подключить сервис" : "Оставить заявку";
+  const ctaPriceCard  = isSub ? "Подключить сейчас" : "Заказать";
+  const priceCardNote = isSub ? "Без договора · Отмена в любой момент" : "Без предоплаты · Работаем по договору";
+  const problemLabel  = isSub ? "Без подписки" : "Без нас";
+  const finalNote     = isSub
+    ? "Без договора · Первый выезд в течение 48 часов · Работаем в Москве и области"
+    : "Без предоплаты · Первый выезд быстро · Работаем в Москве и области";
 
   const related = SERVICES.filter((s) => s.id !== data.id).slice(0, 3);
 
@@ -115,7 +124,7 @@ export function ServicePageLayout({ data }: { data: ServicePageData }) {
                 className="inline-flex items-center justify-center gap-2 text-white font-semibold px-8 py-4 rounded-xl text-base transition-all duration-200 hover:opacity-90 hover:shadow-2xl active:scale-95"
                 style={{ backgroundColor: accentColor }}
               >
-                Подключить сервис
+                {ctaPrimary}
                 <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
@@ -149,7 +158,7 @@ export function ServicePageLayout({ data }: { data: ServicePageData }) {
         <div className="container-custom">
           <div className="max-w-2xl mb-12">
             <span className="inline-block text-xs font-bold uppercase tracking-[0.2em] text-black/30 mb-4">
-              Без подписки
+              {problemLabel}
             </span>
             <h2 className="font-raleway font-black text-2xl md:text-4xl text-[#0A0A0A] leading-tight">
               {data.problemHeading}
@@ -296,12 +305,12 @@ export function ServicePageLayout({ data }: { data: ServicePageData }) {
                 className="inline-flex items-center justify-center gap-2 w-full text-white font-semibold px-6 py-4 rounded-xl text-base transition-all duration-200 hover:opacity-90 active:scale-95"
                 style={{ backgroundColor: accentColor }}
               >
-                Подключить сейчас
+                {ctaPriceCard}
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </Link>
-              <p className="text-center text-black/30 text-xs mt-4">Без договора · Отмена в любой момент</p>
+              <p className="text-center text-black/30 text-xs mt-4">{priceCardNote}</p>
             </div>
           </div>
         </div>
@@ -528,7 +537,7 @@ export function ServicePageLayout({ data }: { data: ServicePageData }) {
               className="inline-flex items-center gap-2 bg-white font-semibold px-10 py-4 rounded-xl text-base transition-all duration-200 hover:bg-white/90 hover:shadow-2xl active:scale-95"
               style={{ color: accentColor }}
             >
-              Подключить сервис
+              {ctaPrimary}
               <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
@@ -543,7 +552,7 @@ export function ServicePageLayout({ data }: { data: ServicePageData }) {
               Позвонить
             </a>
           </div>
-          <p className="text-white/30 text-sm mt-8">Без договора · Первый выезд в течение 48 часов · Работаем в Москве и области</p>
+          <p className="text-white/30 text-sm mt-8">{finalNote}</p>
         </div>
       </section>
     </>
