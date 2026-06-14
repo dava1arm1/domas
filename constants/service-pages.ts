@@ -329,8 +329,8 @@ export const SERVICE_PAGE_DATA: Record<string, ServicePageData> = {
       { text: "Уборка листьев осенью" },
       { text: "Фотоотчёт после каждого визита" },
     ],
-    price: "от 2 990 ₽",
-    priceNote: "за выезд · сезон май–октябрь",
+    price: "Индивидуально",
+    priceNote: "зависит от площади и состояния участка",
 
     comparisonRows: [
       {
