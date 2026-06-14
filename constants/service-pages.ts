@@ -844,9 +844,9 @@ export const SERVICE_PAGE_DATA: Record<string, ServicePageData> = {
         withDomasGood: true,
       },
       {
-        label: "Кровля",
-        without: "Рискованно самому",
-        withDomas: "Профессиональный инструмент",
+        label: "Уведомление",
+        without: "Нет",
+        withDomas: "Предупредим заранее",
         withDomasGood: true,
       },
       {
